@@ -6,10 +6,18 @@ import base64
 import random
 import json
 import time
+import dotenv
 
+dotenv.load_dotenv()
 
 endpoint = os.environ.get("RUNPOD_ENDPOINT")
 bearer_token = os.environ.get("RUNPOD_BEARER_TOKEN")
+
+def save_request_body(test_name, endpoint_body):
+    os.makedirs("ready-to-use", exist_ok=True)
+    with open(f"ready-to-use/{test_name}.json", "w") as f:
+        json.dump(endpoint_body, f, indent=2)
+
 
 def convert_image_to_base64(image_path):
     with open(image_path, "rb") as image_file:
@@ -100,6 +108,8 @@ def test_endpoint(workflow_path, modifications=None, image_path=None):
         response = requests.post(endpoint, json=endpoint_body, headers={"Authorization": f"Bearer {bearer_token}"})
         end_time = time.time()
         print(f"Time taken: {end_time - start_time} seconds")
+        save_request_body(test_name, endpoint_body)
+        print(f"Saved request body to ready-to-use/{test_name}.json")
         response.raise_for_status()
         
         # Parse the response

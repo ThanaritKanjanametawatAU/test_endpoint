@@ -6,14 +6,18 @@ RUNPOD_BEARER_TOKEN=
 ```
 
 To run python code, you need to install the dependencies
+
+[Optional] Create Virtual Environment
 ```
-pip install requests io pillow base64 json random time
+python -m venv venv && source venv/bin/activate
 ```
 
-and then set temporary environment variables
+Install the dependencies
 ```
-set -a; source .env; set +a;
+pip install -r requirements.txt
 ```
+
+
 
 # Formats
 
