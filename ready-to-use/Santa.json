@@ -3,7 +3,7 @@
     "workflow": {
       "6": {
         "inputs": {
-          "text": "An extreme close up look of a person with a face like Moo Deng, baby pygmy hippo.The person's face has dark brown skin glistening with water just like Moo Deng, and has its mouth open wide, small, round ears are visible, and eyes are wide and alert. The person is wearing some clothes, have some hair and no sign of nudity or any kind of profanity.",
+          "text": "A portrait of a character in ufotable-style fantasy whose ethereal magic style blends traditional holiday symbols with supernatural radiance. Their movements create spiral of golden light, brought to life through ufotable's signature dynamic animation. He is wearing santa costume wear long beard. In the background, there are Christmas Trees.",
           "clip": [
             "11",
             0
@@ -11,7 +11,7 @@
         },
         "class_type": "CLIPTextEncode",
         "_meta": {
-          "title": "CLIP Text Encode (Prompt)"
+          "title": "CLIP Text Encode (Positive Prompt)"
         }
       },
       "8": {
@@ -92,7 +92,7 @@
             0
           ],
           "latent_image": [
-            "43",
+            "27",
             0
           ]
         },
@@ -113,10 +113,10 @@
       "17": {
         "inputs": {
           "scheduler": "beta",
-          "steps": 6,
-          "denoise": 0.61,
+          "steps": 20,
+          "denoise": 1,
           "model": [
-            "40",
+            "30",
             0
           ]
         },
@@ -128,11 +128,11 @@
       "22": {
         "inputs": {
           "model": [
-            "40",
+            "12",
             0
           ],
           "conditioning": [
-            "29",
+            "49",
             0
           ]
         },
@@ -143,14 +143,14 @@
       },
       "25": {
         "inputs": {
-          "noise_seed": 64069
+          "noise_seed": 52677
         },
         "class_type": "RandomNoise",
         "_meta": {
           "title": "RandomNoise"
         }
       },
-      "29": {
+      "26": {
         "inputs": {
           "guidance": 3.5,
           "conditioning": [
@@ -163,7 +163,60 @@
           "title": "FluxGuidance"
         }
       },
+      "27": {
+        "inputs": {
+          "width": 1024,
+          "height": 1024,
+          "batch_size": 1
+        },
+        "class_type": "EmptySD3LatentImage",
+        "_meta": {
+          "title": "EmptySD3LatentImage"
+        }
+      },
       "30": {
+        "inputs": {
+          "max_shift": 1.15,
+          "base_shift": 0.5,
+          "width": 1024,
+          "height": 1024,
+          "model": [
+            "12",
+            0
+          ]
+        },
+        "class_type": "ModelSamplingFlux",
+        "_meta": {
+          "title": "ModelSamplingFlux"
+        }
+      },
+      "38": {
+        "inputs": {
+          "clip_name": "sigclip_vision_patch14_384.safetensors"
+        },
+        "class_type": "CLIPVisionLoader",
+        "_meta": {
+          "title": "Load CLIP Vision"
+        }
+      },
+      "39": {
+        "inputs": {
+          "crop": "center",
+          "clip_vision": [
+            "38",
+            0
+          ],
+          "image": [
+            "52",
+            0
+          ]
+        },
+        "class_type": "CLIPVisionEncode",
+        "_meta": {
+          "title": "CLIP Vision Encode"
+        }
+      },
+      "40": {
         "inputs": {
           "image": "current.jpg",
           "upload": "image"
@@ -173,53 +226,100 @@
           "title": "Load Image"
         }
       },
-      "40": {
-        "inputs": {
-          "lora_name": "MooDeng.safetensors",
-          "strength_model": 0.8,
-          "strength_clip": 1,
-          "model": [
-            "12",
-            0
-          ],
-          "clip": [
-            "11",
-            0
-          ]
-        },
-        "class_type": "LoraLoader",
-        "_meta": {
-          "title": "Load LoRA"
-        }
-      },
       "42": {
         "inputs": {
-          "upscale_method": "lanczos",
-          "megapixels": 1,
-          "image": [
-            "30",
-            0
-          ]
+          "style_model_name": "flux1-redux-dev.safetensors"
         },
-        "class_type": "ImageScaleToTotalPixels",
+        "class_type": "StyleModelLoader",
         "_meta": {
-          "title": "ImageScaleToTotalPixels"
+          "title": "Load Style Model"
         }
       },
-      "43": {
+      "45": {
         "inputs": {
-          "pixels": [
+          "image_strength": "medium",
+          "conditioning": [
+            "26",
+            0
+          ],
+          "style_model": [
             "42",
             0
           ],
-          "vae": [
-            "10",
+          "clip_vision_output": [
+            "39",
             0
           ]
         },
-        "class_type": "VAEEncode",
+        "class_type": "StyleModelApplySimple",
         "_meta": {
-          "title": "VAE Encode"
+          "title": "StyleModelApplySimple"
+        }
+      },
+      "49": {
+        "inputs": {
+          "image_strength": "medium",
+          "conditioning": [
+            "45",
+            0
+          ],
+          "style_model": [
+            "42",
+            0
+          ],
+          "clip_vision_output": [
+            "50",
+            0
+          ]
+        },
+        "class_type": "StyleModelApplySimple",
+        "_meta": {
+          "title": "StyleModelApplySimple"
+        }
+      },
+      "50": {
+        "inputs": {
+          "crop": "center",
+          "clip_vision": [
+            "38",
+            0
+          ],
+          "image": [
+            "51",
+            0
+          ]
+        },
+        "class_type": "CLIPVisionEncode",
+        "_meta": {
+          "title": "CLIP Vision Encode"
+        }
+      },
+      "51": {
+        "inputs": {
+          "image": "santa.png",
+          "upload": "image"
+        },
+        "class_type": "LoadImage",
+        "_meta": {
+          "title": "Load Image"
+        }
+      },
+      "52": {
+        "inputs": {
+          "width": 1024,
+          "height": 1024,
+          "upscale_method": "nearest-exact",
+          "keep_proportion": false,
+          "divisible_by": 2,
+          "crop": "disabled",
+          "image": [
+            "40",
+            0
+          ]
+        },
+        "class_type": "ImageResizeKJ",
+        "_meta": {
+          "title": "Resize Image"
         }
       }
     },

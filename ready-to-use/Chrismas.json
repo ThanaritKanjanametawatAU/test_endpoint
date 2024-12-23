@@ -113,7 +113,7 @@
       },
       "25": {
         "inputs": {
-          "noise_seed": 61945
+          "noise_seed": 2674
         },
         "class_type": "RandomNoise"
       },
@@ -156,6 +156,7 @@
       },
       "39": {
         "inputs": {
+          "crop": "center",
           "clip_vision": [
             "38",
             0
@@ -218,6 +219,7 @@
       },
       "50": {
         "inputs": {
+          "crop": "center",
           "clip_vision": [
             "38",
             0

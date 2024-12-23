@@ -1,27 +1,57 @@
 {
   "input": {
     "workflow": {
-      "6": {
+      "3": {
         "inputs": {
-          "text": "An extreme close up look of a person with a face like Moo Deng, baby pygmy hippo.The person's face has dark brown skin glistening with water just like Moo Deng, and has its mouth open wide, small, round ears are visible, and eyes are wide and alert. The person is wearing some clothes, have some hair and no sign of nudity or any kind of profanity.",
+          "seed": 38998,
+          "steps": 20,
+          "cfg": 1,
+          "sampler_name": "euler",
+          "scheduler": "beta",
+          "denoise": 0.9,
+          "model": [
+            "31",
+            0
+          ],
+          "positive": [
+            "35",
+            0
+          ],
+          "negative": [
+            "35",
+            1
+          ],
+          "latent_image": [
+            "35",
+            2
+          ]
+        },
+        "class_type": "KSampler",
+        "_meta": {
+          "title": "KSampler"
+        }
+      },
+      "7": {
+        "inputs": {
+          "text": "",
           "clip": [
-            "11",
+            "34",
             0
           ]
         },
         "class_type": "CLIPTextEncode",
         "_meta": {
-          "title": "CLIP Text Encode (Prompt)"
+          "title": "CLIP Text Encode (Negative Prompt)"
         }
       },
       "8": {
         "inputs": {
           "samples": [
-            "13",
+            "3",
             0
           ],
           "vae": [
-            "10",
+            "32",
             0
           ]
         },
@@ -43,118 +73,48 @@
           "title": "Save Image"
         }
       },
-      "10": {
-        "inputs": {
-          "vae_name": "ae.safetensors"
-        },
-        "class_type": "VAELoader",
-        "_meta": {
-          "title": "Load VAE"
-        }
-      },
-      "11": {
-        "inputs": {
-          "clip_name1": "t5xxl_fp8_e4m3fn.safetensors",
-          "clip_name2": "clip_l.safetensors",
-          "type": "flux"
-        },
-        "class_type": "DualCLIPLoader",
-        "_meta": {
-          "title": "DualCLIPLoader"
-        }
-      },
-      "12": {
-        "inputs": {
-          "unet_name": "flux1-dev.safetensors",
-          "weight_dtype": "fp8_e4m3fn"
-        },
-        "class_type": "UNETLoader",
-        "_meta": {
-          "title": "Load Diffusion Model"
-        }
-      },
-      "13": {
-        "inputs": {
-          "noise": [
-            "25",
-            0
-          ],
-          "guider": [
-            "22",
-            0
-          ],
-          "sampler": [
-            "16",
-            0
-          ],
-          "sigmas": [
-            "17",
-            0
-          ],
-          "latent_image": [
-            "43",
-            0
-          ]
-        },
-        "class_type": "SamplerCustomAdvanced",
-        "_meta": {
-          "title": "SamplerCustomAdvanced"
-        }
-      },
-      "16": {
-        "inputs": {
-          "sampler_name": "euler"
-        },
-        "class_type": "KSamplerSelect",
-        "_meta": {
-          "title": "KSamplerSelect"
-        }
-      },
       "17": {
         "inputs": {
-          "scheduler": "beta",
-          "steps": 6,
-          "denoise": 0.61,
-          "model": [
-            "40",
+          "image": "padoru.png",
+          "upload": "image"
+        },
+        "class_type": "LoadImage",
+        "_meta": {
+          "title": "Load Image"
+        }
+      },
+      "18": {
+        "inputs": {
+          "low_threshold": 0.15,
+          "high_threshold": 0.3,
+          "image": [
+            "17",
             0
           ]
         },
-        "class_type": "BasicScheduler",
+        "class_type": "Canny",
         "_meta": {
-          "title": "BasicScheduler"
+          "title": "Canny"
         }
       },
-      "22": {
+      "23": {
         "inputs": {
-          "model": [
-            "40",
-            0
-          ],
-          "conditioning": [
-            "29",
+          "text": "A chibi padoru character in winter attire. They wear a festive Santa shirt and long black leggings, topped with a playful red Santa hat. The artwork features a soft, kawaii style against a white background of gentle lgiht blue snowflakes, accompanied by a gift sack in white color.",
+          "clip": [
+            "34",
             0
           ]
         },
-        "class_type": "BasicGuider",
+        "class_type": "CLIPTextEncode",
         "_meta": {
-          "title": "BasicGuider"
+          "title": "CLIP Text Encode (Positive Prompt)"
         }
       },
-      "25": {
+      "26": {
         "inputs": {
-          "noise_seed": 64069
-        },
-        "class_type": "RandomNoise",
-        "_meta": {
-          "title": "RandomNoise"
-        }
-      },
-      "29": {
-        "inputs": {
-          "guidance": 3.5,
+          "guidance": 30,
           "conditioning": [
-            "6",
+            "41",
             0
           ]
         },
@@ -163,7 +123,61 @@
           "title": "FluxGuidance"
         }
       },
-      "30": {
+      "31": {
+        "inputs": {
+          "unet_name": "flux1-canny-dev.safetensors",
+          "weight_dtype": "fp8_e4m3fn"
+        },
+        "class_type": "UNETLoader",
+        "_meta": {
+          "title": "Load Diffusion Model"
+        }
+      },
+      "32": {
+        "inputs": {
+          "vae_name": "ae.safetensors"
+        },
+        "class_type": "VAELoader",
+        "_meta": {
+          "title": "Load VAE"
+        }
+      },
+      "34": {
+        "inputs": {
+          "clip_name1": "clip_l.safetensors",
+          "clip_name2": "t5xxl_fp8_e4m3fn.safetensors",
+          "type": "flux"
+        },
+        "class_type": "DualCLIPLoader",
+        "_meta": {
+          "title": "DualCLIPLoader"
+        }
+      },
+      "35": {
+        "inputs": {
+          "positive": [
+            "26",
+            0
+          ],
+          "negative": [
+            "7",
+            0
+          ],
+          "vae": [
+            "32",
+            0
+          ],
+          "pixels": [
+            "18",
+            0
+          ]
+        },
+        "class_type": "InstructPixToPixConditioning",
+        "_meta": {
+          "title": "InstructPixToPixConditioning"
+        }
+      },
+      "36": {
         "inputs": {
           "image": "current.jpg",
           "upload": "image"
@@ -173,53 +187,165 @@
           "title": "Load Image"
         }
       },
-      "40": {
+      "38": {
         "inputs": {
-          "lora_name": "MooDeng.safetensors",
-          "strength_model": 0.8,
-          "strength_clip": 1,
-          "model": [
-            "12",
+          "clip_name": "sigclip_vision_patch14_384.safetensors"
+        },
+        "class_type": "CLIPVisionLoader",
+        "_meta": {
+          "title": "Load CLIP Vision"
+        }
+      },
+      "39": {
+        "inputs": {
+          "crop": "center",
+          "clip_vision": [
+            "38",
             0
           ],
-          "clip": [
-            "11",
+          "image": [
+            "59",
             0
           ]
         },
-        "class_type": "LoraLoader",
+        "class_type": "CLIPVisionEncode",
         "_meta": {
-          "title": "Load LoRA"
+          "title": "CLIP Vision Encode"
+        }
+      },
+      "40": {
+        "inputs": {
+          "style_model_name": "flux1-redux-dev.safetensors"
+        },
+        "class_type": "StyleModelLoader",
+        "_meta": {
+          "title": "Load Style Model"
+        }
+      },
+      "41": {
+        "inputs": {
+          "image_strength": "high",
+          "conditioning": [
+            "23",
+            0
+          ],
+          "style_model": [
+            "40",
+            0
+          ],
+          "clip_vision_output": [
+            "39",
+            0
+          ]
+        },
+        "class_type": "StyleModelApplySimple",
+        "_meta": {
+          "title": "StyleModelApplySimple"
         }
       },
       "42": {
         "inputs": {
-          "upscale_method": "lanczos",
-          "megapixels": 1,
-          "image": [
-            "30",
-            0
-          ]
+          "model_name": "sam_vit_h (2.56GB)"
         },
-        "class_type": "ImageScaleToTotalPixels",
+        "class_type": "SAMModelLoader (segment anything)",
         "_meta": {
-          "title": "ImageScaleToTotalPixels"
+          "title": "SAMModelLoader (segment anything)"
         }
       },
       "43": {
         "inputs": {
-          "pixels": [
+          "model_name": "GroundingDINO_SwinT_OGC (694MB)"
+        },
+        "class_type": "GroundingDinoModelLoader (segment anything)",
+        "_meta": {
+          "title": "GroundingDinoModelLoader (segment anything)"
+        }
+      },
+      "44": {
+        "inputs": {
+          "prompt": "hair, glasses, face, neck",
+          "threshold": 0.3,
+          "sam_model": [
             "42",
             0
           ],
-          "vae": [
-            "10",
+          "grounding_dino_model": [
+            "43",
+            0
+          ],
+          "image": [
+            "36",
             0
           ]
         },
-        "class_type": "VAEEncode",
+        "class_type": "GroundingDinoSAMSegment (segment anything)",
         "_meta": {
-          "title": "VAE Encode"
+          "title": "GroundingDinoSAMSegment (segment anything)"
+        }
+      },
+      "50": {
+        "inputs": {
+          "masks": [
+            "44",
+            1
+          ]
+        },
+        "class_type": "Mask Invert",
+        "_meta": {
+          "title": "Mask Invert"
+        }
+      },
+      "52": {
+        "inputs": {
+          "mask": [
+            "50",
+            0
+          ]
+        },
+        "class_type": "MaskToImage",
+        "_meta": {
+          "title": "Convert Mask to Image"
+        }
+      },
+      "54": {
+        "inputs": {
+          "x": 0,
+          "y": 0,
+          "resize_source": false,
+          "destination": [
+            "44",
+            0
+          ],
+          "source": [
+            "52",
+            0
+          ],
+          "mask": [
+            "50",
+            0
+          ]
+        },
+        "class_type": "ImageCompositeMasked",
+        "_meta": {
+          "title": "ImageCompositeMasked"
+        }
+      },
+      "59": {
+        "inputs": {
+          "width": 1024,
+          "height": 1024,
+          "interpolation": "nearest",
+          "method": "fill / crop",
+          "condition": "always",
+          "multiple_of": 0,
+          "image": [
+            "54",
+            0
+          ]
+        },
+        "class_type": "ImageResize+",
+        "_meta": {
+          "title": "\ud83d\udd27 Image Resize"
         }
       }
     },
