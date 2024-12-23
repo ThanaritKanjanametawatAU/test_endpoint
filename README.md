@@ -105,7 +105,7 @@ and only then, put this workflow and base64 image into the endpoint_body
 
 <br><br>
 
-# Workflow #3: Chrismas (Format #2)
+# Workflow #3: Chrismas, Reindeer, Santa, Elf (Format #2)
 
 3.1 [Optional] Don't have to modify this for now.
 ```
@@ -123,6 +123,14 @@ workflowAPI["25"]["inputs"]["noise_seed"]
 and only then, put this workflow and base64 image into the endpoint_body
 
 <br><br>
+
+# Workflow #4: Padoru (Format #2)
+
+3.1 Randomize this for different results
+```
+workflowAPI["3"]["inputs"]["seed"]
+```
+
 
 
 

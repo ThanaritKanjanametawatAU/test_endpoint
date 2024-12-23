@@ -133,6 +133,71 @@ def test_endpoint(workflow_path, modifications=None, image_path=None):
 
 # Define test cases with their modifications
 tests = {
+    # "ChangeClothesReal": {
+    #     "workflow_path": "ProductionWorkflow/ChangeClothesReal/ChangeClothesRealV1-api.json",
+    #     "image_path": "current.jpg",
+    #     "modifications": [
+    #         {
+    #             "path": ["54", "inputs", "image"],
+    #             "value": "7.png"
+    #         }
+    #     ]
+    # },
+    "Elf": {
+        "workflow_path": "ProductionWorkflow/Chrismas/ElfV1-api.json",
+        "image_path": "current.jpg",
+        "modifications": [
+            {
+                "path": ["25", "inputs", "noise_seed"],
+                "value": random.randint(0, 2**16 - 1)
+            }
+        ]
+    },
+
+    "Reindeer": {
+        "workflow_path": "ProductionWorkflow/Chrismas/ReindeerV1-api.json",
+        "image_path": "current.jpg",
+        "modifications": [
+            {
+                "path": ["25", "inputs", "noise_seed"],
+                "value": random.randint(0, 2**16 - 1)
+            }
+        ]
+    },
+
+    "Santa": {
+        "workflow_path": "ProductionWorkflow/Chrismas/SantaV1-api.json",
+        "image_path": "current.jpg",
+        "modifications": [
+            {
+                "path": ["25", "inputs", "noise_seed"],
+                "value": random.randint(0, 2**16 - 1)
+            }
+        ]
+    },
+
+    "Padoru": {
+        "workflow_path": "ProductionWorkflow/Chrismas/PadoruV1-api.json",
+        "image_path": "current.jpg",
+        "modifications": [
+            {
+                "path": ["3", "inputs", "seed"],
+                "value": random.randint(0, 2**16 - 1)
+            }
+        ]
+    },
+
+    "Chrismas": {
+        "workflow_path": "ProductionWorkflow/Chrismas/ChrismasV1-api.json",
+        "image_path": "current.jpg",
+        "modifications": [
+            {
+                "path": ["25", "inputs", "noise_seed"],
+                "value": random.randint(0, 2**16 - 1)
+            }
+        ]
+    },
+
     "DevBase": {
         "workflow_path": "ProductionWorkflow/Base/devbaseV1-api.json",
         "modifications": [
@@ -156,16 +221,7 @@ tests = {
             }
         ]
     },
-    "Chrismas": {
-        "workflow_path": "ProductionWorkflow/Chrismas/ChrismasV1-api.json",
-        "image_path": "current.jpg",
-        "modifications": [
-            {
-                "path": ["25", "inputs", "noise_seed"],
-                "value": random.randint(0, 2**16 - 1)
-            }
-        ]
-    }
+
 }
 
 # Run tests
