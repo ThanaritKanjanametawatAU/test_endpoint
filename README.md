@@ -168,9 +168,12 @@ workflowAPI["25"]["inputs"]["noise_seed"]
 
 5.3 Put any **Image Address Online** into this, example link down below (Reference image for the Transformation)
 ```
-workflowAPI["55"]["inputs"]["url"] = https://imgs.search.brave.com/nXZmSaMrB3oLjQ-EQED7gRUoGn2TO5sHCBjdfkdUR-A/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93MC5w/ZWFrcHguY29tL3dh/bGxwYXBlci83NDcv/MzI3L0hELXdhbGxw/YXBlci10YW5qaXJv/LXBpYy1mYW4tYXJ0/LWFuaW1lLWRlbW9u/LXNsYXllci1raW1l/dHN1LW5vLXlhaWJh/LmpwZw 
+workflowAPI["55"]["inputs"]["url"] = https://w0.peakpx.com/wallpaper/747/327/HD-wallpaper-tanjiro-pic-fan-art-anime-demon-slayer-kimetsu-no-yaiba.jpg
 ```
 
+List of Image Address Online (May Have Copyright Issues, Beware):
+- https://w0.peakpx.com/wallpaper/747/327/HD-wallpaper-tanjiro-pic-fan-art-anime-demon-slayer-kimetsu-no-yaiba.jpg
+- https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/64a25159-0d78-46cb-9b15-5216894c4ddb/dhkmle5-dc2fffca-11d6-4003-bd2c-d37c08dd4ef5.png/v1/fill/w_776,h_1030,q_70,strp/jujutsu_kaisen___gojo_satoru_by_a1nime_dhkmle5-pre.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTcwMCIsInBhdGgiOiJcL2ZcLzY0YTI1MTU5LTBkNzgtNDZjYi05YjE1LTUyMTY4OTRjNGRkYlwvZGhrbWxlNS1kYzJmZmZjYS0xMWQ2LTQwMDMtYmQyYy1kMzdjMDhkZDRlZjUucG5nIiwid2lkdGgiOiI8PTEyODAifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.RIC_CCyGDLvZqp52ka_GzXTxr2yN0H7FhYfpHRtDzg0
 <br><br>
 
 
@@ -184,12 +187,18 @@ workflowAPI["7"]["inputs"]["seed"]
 
 <br>
 
-6.2 Put any **Image Address Online** into this, example link down below (Reference for the Hair Style, must be an image of a clear straight face)
+6.2 Put any **Image Address Online** into this, example link down below (Reference for the Hair Style, **must be an image of a clear straight face**)
 ```
 workflowAPI["15"]["inputs"]["url"]
 ```
 
-
+List of Image Address Online (May Have Copyright Issues, Beware):
+- https://i.imgur.com/6IU2ei9.jpeg
+- https://i.imgur.com/TjtVYfa.png
+- https://i.imgur.com/LRqiRgw.png
+- https://i.imgur.com/6wA0mb4.png
+- https://i.imgur.com/VQRaWCl.png
+- https://i.imgur.com/9aSpX8O.png
 
 
 
