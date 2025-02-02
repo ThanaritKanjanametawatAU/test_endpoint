@@ -7,11 +7,23 @@ import random
 import json
 import time
 import dotenv
+import argparse
+
+# Add argument parser
+parser = argparse.ArgumentParser()
+parser.add_argument('--local', type=bool, default=False, help='Whether to test local endpoint')
+args = parser.parse_args()
 
 dotenv.load_dotenv()
 
-endpoint = os.environ.get("RUNPOD_ENDPOINT")
-bearer_token = os.environ.get("RUNPOD_BEARER_TOKEN")
+# Set endpoint based on local argument
+if args.local:
+    endpoint = "http://localhost:8000/runsync"
+    headers = {}
+else:
+    endpoint = os.environ.get("RUNPOD_ENDPOINT")
+    bearer_token = os.environ.get("RUNPOD_BEARER_TOKEN")
+    headers = {"Authorization": f"Bearer {bearer_token}"}
 
 def save_request_body(test_name, endpoint_body):
     os.makedirs("ready-to-use", exist_ok=True)
@@ -105,7 +117,7 @@ def test_endpoint(workflow_path, modifications=None, image_path=None):
     try:
         # Make the API request
         start_time = time.time()
-        response = requests.post(endpoint, json=endpoint_body, headers={"Authorization": f"Bearer {bearer_token}"})
+        response = requests.post(endpoint, json=endpoint_body, headers=headers)
         end_time = time.time()
         print(f"Time taken: {end_time - start_time} seconds")
         save_request_body(test_name, endpoint_body)
@@ -116,19 +128,29 @@ def test_endpoint(workflow_path, modifications=None, image_path=None):
         response_data = response.json()
         image_string = response_data["output"]["message"]
         
-        # Decode and display the image
+        # Decode and save/show the image
         image_data = base64.b64decode(image_string)
         image = Image.open(io.BytesIO(image_data))
-        image.show()
+        
+
+        # Save image and print location
+        output_dir = "local_endpoint_result" if args.local else "runpod_endpoint_result"
+        os.makedirs(output_dir, exist_ok=True)
+        output_path = f"{output_dir}/{test_name}.jpg"
+        image.save(output_path)
+        print(f"Image saved as {output_path}")
+        
+        # Print that the test name is completed with green checkmark
+        print(f"\033[92m{test_name} completed\033[0m")
         
     except requests.exceptions.RequestException as e:
-        print(f"Network error: {str(e)}")
+        print(f"\033[91m{test_name} failed\033[0m - Network error: {str(e)}")
     except json.JSONDecodeError:
-        print("Error: Invalid JSON response")
+        print(f"\033[91m{test_name} failed\033[0m - Invalid JSON response")
     except KeyError:
-        print("Error: Unexpected response format")
+        print(f"\033[91m{test_name} failed\033[0m - Unexpected response format")
     except Exception as e:
-        print(f"Unexpected error: {str(e)}")
+        print(f"\033[91m{test_name} failed\033[0m - Unexpected error: {str(e)}")
         print(f"Response content: {response.text}")
 
 # Define test cases with their modifications
@@ -143,6 +165,34 @@ tests = {
     #         }
     #     ]
     # },
+    "HairStyle": {
+        "workflow_path": "ProductionWorkflow/HairStyle/HairStyleV1-api.json",
+        "image_path": "current.jpg",
+        "modifications": [
+            {
+                "path": ["7", "inputs", "seed"],
+                "value": random.randint(0, 2**16 - 1)
+            },
+            {
+                "path": ["15", "inputs", "url"],
+                "value": "https://imgs.search.brave.com/YVrEvT_H1t4o9c-dUz2KzO-C0VNq37mfJ6db85DFfwY/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzL2I1LzEy/LzhmL2I1MTI4ZmY4/MTM5MjEwN2U2MTdk/NjMyN2QzZTMxYmFm/LmpwZw"
+            }
+        ]
+    },
+    "AnimeTransform": {
+        "workflow_path": "ProductionWorkflow/AnimeTransform/AnimeTransformV1-api.json",
+        "image_path": "current.jpg",
+        "modifications": [
+            {
+                "path": ["25", "inputs", "noise_seed"],
+                "value": random.randint(0, 2**16 - 1)
+            },
+            {
+                "path": ["55", "inputs", "url"],
+                "value": "https://imgs.search.brave.com/nXZmSaMrB3oLjQ-EQED7gRUoGn2TO5sHCBjdfkdUR-A/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93MC5w/ZWFrcHguY29tL3dh/bGxwYXBlci83NDcv/MzI3L0hELXdhbGxw/YXBlci10YW5qaXJv/LXBpYy1mYW4tYXJ0/LWFuaW1lLWRlbW9u/LXNsYXllci1raW1l/dHN1LW5vLXlhaWJh/LmpwZw"
+            }
+        ]
+    },
     "Elf": {
         "workflow_path": "ProductionWorkflow/Chrismas/ElfV1-api.json",
         "image_path": "current.jpg",

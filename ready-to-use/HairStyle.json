@@ -1,222 +1,76 @@
 {
   "input": {
     "workflow": {
-      "6": {
+      "1": {
         "inputs": {
-          "text": "A portrait of a character in ufotable-style fantasy whose ethereal magic style blends traditional holiday symbols with supernatural radiance. Their movements create spiral of golden light, brought to life through ufotable's signature dynamic animation. He is wearing reindeer horn on his head. In the background, there are Christmas Trees.",
-          "clip": [
-            "11",
-            0
-          ]
-        },
-        "class_type": "CLIPTextEncode",
-        "_meta": {
-          "title": "CLIP Text Encode (Positive Prompt)"
-        }
-      },
-      "8": {
-        "inputs": {
-          "samples": [
-            "13",
-            0
-          ],
-          "vae": [
-            "10",
-            0
-          ]
-        },
-        "class_type": "VAEDecode",
-        "_meta": {
-          "title": "VAE Decode"
-        }
-      },
-      "9": {
-        "inputs": {
-          "filename_prefix": "ComfyUI",
-          "images": [
-            "8",
-            0
-          ]
-        },
-        "class_type": "SaveImage",
-        "_meta": {
-          "title": "Save Image"
-        }
-      },
-      "10": {
-        "inputs": {
-          "vae_name": "ae.safetensors"
-        },
-        "class_type": "VAELoader",
-        "_meta": {
-          "title": "Load VAE"
-        }
-      },
-      "11": {
-        "inputs": {
-          "clip_name1": "t5xxl_fp8_e4m3fn.safetensors",
-          "clip_name2": "clip_l.safetensors",
-          "type": "flux"
-        },
-        "class_type": "DualCLIPLoader",
-        "_meta": {
-          "title": "DualCLIPLoader"
-        }
-      },
-      "12": {
-        "inputs": {
-          "unet_name": "flux1-dev.safetensors",
-          "weight_dtype": "fp8_e4m3fn"
-        },
-        "class_type": "UNETLoader",
-        "_meta": {
-          "title": "Load Diffusion Model"
-        }
-      },
-      "13": {
-        "inputs": {
-          "noise": [
-            "25",
-            0
-          ],
-          "guider": [
-            "22",
-            0
-          ],
-          "sampler": [
-            "16",
-            0
-          ],
-          "sigmas": [
-            "17",
-            0
-          ],
-          "latent_image": [
-            "27",
-            0
-          ]
-        },
-        "class_type": "SamplerCustomAdvanced",
-        "_meta": {
-          "title": "SamplerCustomAdvanced"
-        }
-      },
-      "16": {
-        "inputs": {
-          "sampler_name": "euler"
-        },
-        "class_type": "KSamplerSelect",
-        "_meta": {
-          "title": "KSamplerSelect"
-        }
-      },
-      "17": {
-        "inputs": {
-          "scheduler": "beta",
+          "seed": 102709385725920,
           "steps": 20,
-          "denoise": 1,
+          "cfg": 1.5,
+          "control_strength": 1,
+          "adapter_strength": 1,
           "model": [
-            "30",
-            0
-          ]
-        },
-        "class_type": "BasicScheduler",
-        "_meta": {
-          "title": "BasicScheduler"
-        }
-      },
-      "22": {
-        "inputs": {
-          "model": [
-            "12",
+            "3",
             0
           ],
-          "conditioning": [
-            "49",
-            0
-          ]
-        },
-        "class_type": "BasicGuider",
-        "_meta": {
-          "title": "BasicGuider"
-        }
-      },
-      "25": {
-        "inputs": {
-          "noise_seed": 64048
-        },
-        "class_type": "RandomNoise",
-        "_meta": {
-          "title": "RandomNoise"
-        }
-      },
-      "26": {
-        "inputs": {
-          "guidance": 3.5,
-          "conditioning": [
-            "6",
-            0
-          ]
-        },
-        "class_type": "FluxGuidance",
-        "_meta": {
-          "title": "FluxGuidance"
-        }
-      },
-      "27": {
-        "inputs": {
-          "width": 1024,
-          "height": 1024,
-          "batch_size": 1
-        },
-        "class_type": "EmptySD3LatentImage",
-        "_meta": {
-          "title": "EmptySD3LatentImage"
-        }
-      },
-      "30": {
-        "inputs": {
-          "max_shift": 1.15,
-          "base_shift": 0.5,
-          "width": 1024,
-          "height": 1024,
-          "model": [
-            "12",
-            0
-          ]
-        },
-        "class_type": "ModelSamplingFlux",
-        "_meta": {
-          "title": "ModelSamplingFlux"
-        }
-      },
-      "38": {
-        "inputs": {
-          "clip_name": "sigclip_vision_patch14_384.safetensors"
-        },
-        "class_type": "CLIPVisionLoader",
-        "_meta": {
-          "title": "Load CLIP Vision"
-        }
-      },
-      "39": {
-        "inputs": {
-          "crop": "center",
-          "clip_vision": [
-            "38",
+          "images": [
+            "4",
             0
           ],
+          "bald_image": [
+            "7",
+            0
+          ]
+        },
+        "class_type": "ApplyHairTransfer",
+        "_meta": {
+          "title": "ApplyHairTransfer"
+        }
+      },
+      "3": {
+        "inputs": {
+          "ckpt_name": "juggernaut_reborn.safetensors",
+          "encoder_model": "hair_encoder_model.bin",
+          "adapter_model": "hair_adapter_model.bin",
+          "control_model": "hair_controlnet_model.bin",
+          "device": "AUTO"
+        },
+        "class_type": "LoadStableHairTransferModel",
+        "_meta": {
+          "title": "LoadStableHairTransferModel"
+        }
+      },
+      "4": {
+        "inputs": {
+          "width": 512,
+          "height": 512,
+          "interpolation": "nearest",
+          "method": "stretch",
+          "condition": "always",
+          "multiple_of": 0,
           "image": [
-            "52",
+            "5",
             0
           ]
         },
-        "class_type": "CLIPVisionEncode",
+        "class_type": "ImageResize+",
         "_meta": {
-          "title": "CLIP Vision Encode"
+          "title": "\ud83d\udd27 Image Resize"
         }
       },
-      "40": {
+      "5": {
+        "inputs": {
+          "facedetection": "retinaface_resnet50",
+          "image": [
+            "15",
+            0
+          ]
+        },
+        "class_type": "CropFace",
+        "_meta": {
+          "title": "CropFace"
+        }
+      },
+      "6": {
         "inputs": {
           "image": "current.jpg",
           "upload": "image"
@@ -226,100 +80,114 @@
           "title": "Load Image"
         }
       },
-      "42": {
+      "7": {
         "inputs": {
-          "style_model_name": "flux1-redux-dev.safetensors"
-        },
-        "class_type": "StyleModelLoader",
-        "_meta": {
-          "title": "Load Style Model"
-        }
-      },
-      "45": {
-        "inputs": {
-          "image_strength": "medium",
-          "conditioning": [
-            "26",
+          "seed": 50917,
+          "steps": 20,
+          "strength": 1,
+          "cfg": 1.5,
+          "bald_model": [
+            "10",
             0
           ],
-          "style_model": [
-            "42",
-            0
-          ],
-          "clip_vision_output": [
-            "39",
+          "images": [
+            "11",
             0
           ]
         },
-        "class_type": "StyleModelApplySimple",
+        "class_type": "ApplyHairRemover",
         "_meta": {
-          "title": "StyleModelApplySimple"
+          "title": "ApplyHairRemover"
         }
       },
-      "49": {
+      "10": {
         "inputs": {
-          "image_strength": "low",
-          "conditioning": [
-            "45",
-            0
-          ],
-          "style_model": [
-            "42",
-            0
-          ],
-          "clip_vision_output": [
-            "50",
+          "ckpt_name": "juggernaut_reborn.safetensors",
+          "bald_model": "hair_bald_model.bin",
+          "device": "AUTO"
+        },
+        "class_type": "LoadStableHairRemoverModel",
+        "_meta": {
+          "title": "LoadStableHairRemoverModel"
+        }
+      },
+      "11": {
+        "inputs": {
+          "width": 512,
+          "height": 512,
+          "interpolation": "nearest",
+          "method": "stretch",
+          "condition": "always",
+          "multiple_of": 0,
+          "image": [
+            "12",
             0
           ]
         },
-        "class_type": "StyleModelApplySimple",
+        "class_type": "ImageResize+",
         "_meta": {
-          "title": "StyleModelApplySimple"
+          "title": "\ud83d\udd27 Image Resize"
         }
       },
-      "50": {
+      "12": {
         "inputs": {
-          "crop": "center",
-          "clip_vision": [
-            "38",
+          "facedetection": "retinaface_resnet50",
+          "image": [
+            "6",
+            0
+          ]
+        },
+        "class_type": "CropFace",
+        "_meta": {
+          "title": "CropFace"
+        }
+      },
+      "15": {
+        "inputs": {
+          "url": "https://imgs.search.brave.com/YVrEvT_H1t4o9c-dUz2KzO-C0VNq37mfJ6db85DFfwY/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzL2I1LzEy/LzhmL2I1MTI4ZmY4/MTM5MjEwN2U2MTdk/NjMyN2QzZTMxYmFm/LmpwZw",
+          "cache": false
+        },
+        "class_type": "LoadImageByUrl //Browser",
+        "_meta": {
+          "title": "Load Image By URL"
+        }
+      },
+      "77": {
+        "inputs": {
+          "upscale_model": [
+            "79",
             0
           ],
           "image": [
-            "51",
+            "1",
             0
           ]
         },
-        "class_type": "CLIPVisionEncode",
+        "class_type": "ImageUpscaleWithModel",
         "_meta": {
-          "title": "CLIP Vision Encode"
+          "title": "Upscale Image (using Model)"
         }
       },
-      "51": {
+      "79": {
         "inputs": {
-          "image": "reindeer.png",
-          "upload": "image"
+          "model_name": "4x-UltraSharp.pth"
         },
-        "class_type": "LoadImage",
+        "class_type": "UpscaleModelLoader",
         "_meta": {
-          "title": "Load Image"
+          "title": "Load Upscale Model"
         }
       },
-      "52": {
+      "81": {
         "inputs": {
-          "width": 1024,
-          "height": 1024,
-          "upscale_method": "nearest-exact",
-          "keep_proportion": false,
-          "divisible_by": 2,
-          "crop": "disabled",
-          "image": [
-            "40",
+          "filename_prefix": "ComfyUI",
+          "images": [
+            "77",
             0
           ]
         },
-        "class_type": "ImageResizeKJ",
+        "class_type": "SaveImage",
         "_meta": {
-          "title": "Resize Image"
+          "title": "Save Image"
         }
       }
     },

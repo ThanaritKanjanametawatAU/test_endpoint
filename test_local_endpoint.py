@@ -139,6 +139,34 @@ tests = {
     #         }
     #     ]
     # },
+    "HairStyle": {
+        "workflow_path": "ProductionWorkflow/HairStyle/HairStyleV1-api.json",
+        "image_path": "current.jpg",
+        "modifications": [
+            {
+                "path": ["7", "inputs", "seed"],
+                "value": random.randint(0, 2**16 - 1)
+            },
+            {
+                "path": ["15", "inputs", "url"],
+                "value": "https://imgs.search.brave.com/YVrEvT_H1t4o9c-dUz2KzO-C0VNq37mfJ6db85DFfwY/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzL2I1LzEy/LzhmL2I1MTI4ZmY4/MTM5MjEwN2U2MTdk/NjMyN2QzZTMxYmFm/LmpwZw"
+            }
+        ]
+    },
+    "AnimeTransform": {
+        "workflow_path": "ProductionWorkflow/AnimeTransform/AnimeTransformV1-api.json",
+        "image_path": "current.jpg",
+        "modifications": [
+            {
+                "path": ["25", "inputs", "noise_seed"],
+                "value": random.randint(0, 2**16 - 1)
+            },
+            {
+                "path": ["55", "inputs", "url"],
+                "value": "https://imgs.search.brave.com/nXZmSaMrB3oLjQ-EQED7gRUoGn2TO5sHCBjdfkdUR-A/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93MC5w/ZWFrcHguY29tL3dh/bGxwYXBlci83NDcv/MzI3L0hELXdhbGxw/YXBlci10YW5qaXJv/LXBpYy1mYW4tYXJ0/LWFuaW1lLWRlbW9u/LXNsYXllci1raW1l/dHN1LW5vLXlhaWJh/LmpwZw"
+            }
+        ]
+    },
     "Elf": {
         "workflow_path": "ProductionWorkflow/Chrismas/ElfV1-api.json",
         "image_path": "current.jpg",

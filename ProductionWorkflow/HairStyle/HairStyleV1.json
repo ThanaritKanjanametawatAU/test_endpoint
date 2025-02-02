@@ -1,0 +1,641 @@
+{
+  "last_node_id": 81,
+  "last_link_id": 101,
+  "nodes": [
+    {
+      "id": 4,
+      "type": "ImageResize+",
+      "pos": [
+        -439.6734313964844,
+        388.13079833984375
+      ],
+      "size": [
+        315,
+        218
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 4
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            3
+          ]
+        },
+        {
+          "name": "width",
+          "type": "INT",
+          "links": null
+        },
+        {
+          "name": "height",
+          "type": "INT",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ImageResize+"
+      },
+      "widgets_values": [
+        512,
+        512,
+        "nearest",
+        "stretch",
+        "always",
+        0
+      ]
+    },
+    {
+      "id": 11,
+      "type": "ImageResize+",
+      "pos": [
+        -556.0551147460938,
+        845.1583251953125
+      ],
+      "size": [
+        315,
+        218
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 11
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            10
+          ]
+        },
+        {
+          "name": "width",
+          "type": "INT",
+          "links": null
+        },
+        {
+          "name": "height",
+          "type": "INT",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ImageResize+"
+      },
+      "widgets_values": [
+        512,
+        512,
+        "nearest",
+        "stretch",
+        "always",
+        0
+      ]
+    },
+    {
+      "id": 7,
+      "type": "ApplyHairRemover",
+      "pos": [
+        -109.83646392822266,
+        667.017333984375
+      ],
+      "size": [
+        315,
+        174
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "bald_model",
+          "type": "BALD_MODEL",
+          "link": 9
+        },
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 10
+        }
+      ],
+      "outputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "links": [
+            6
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ApplyHairRemover"
+      },
+      "widgets_values": [
+        584025910946340,
+        "randomize",
+        20,
+        1,
+        1.5
+      ]
+    },
+    {
+      "id": 10,
+      "type": "LoadStableHairRemoverModel",
+      "pos": [
+        -556.5913696289062,
+        670.7716674804688
+      ],
+      "size": [
+        320.0914306640625,
+        106
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "bald_model",
+          "type": "BALD_MODEL",
+          "links": [
+            9
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadStableHairRemoverModel"
+      },
+      "widgets_values": [
+        "juggernaut_reborn.safetensors",
+        "hair_bald_model.bin",
+        "AUTO"
+      ]
+    },
+    {
+      "id": 3,
+      "type": "LoadStableHairTransferModel",
+      "pos": [
+        -116.77303314208984,
+        167.05133056640625
+      ],
+      "size": [
+        340.20001220703125,
+        154
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "model",
+          "type": "HAIR_MODEL",
+          "links": [
+            2
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadStableHairTransferModel"
+      },
+      "widgets_values": [
+        "juggernaut_reborn.safetensors",
+        "hair_encoder_model.bin",
+        "hair_adapter_model.bin",
+        "hair_controlnet_model.bin",
+        "AUTO"
+      ]
+    },
+    {
+      "id": 5,
+      "type": "CropFace",
+      "pos": [
+        -921.5365600585938,
+        388.13079833984375
+      ],
+      "size": [
+        315,
+        58
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 15
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            4
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CropFace"
+      },
+      "widgets_values": [
+        "retinaface_resnet50"
+      ]
+    },
+    {
+      "id": 12,
+      "type": "CropFace",
+      "pos": [
+        -921.5365600585938,
+        847.2208862304688
+      ],
+      "size": [
+        315,
+        58
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 16
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            11
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CropFace"
+      },
+      "widgets_values": [
+        "retinaface_resnet50"
+      ]
+    },
+    {
+      "id": 1,
+      "type": "ApplyHairTransfer",
+      "pos": [
+        315.2430114746094,
+        364.99200439453125
+      ],
+      "size": [
+        315,
+        218
+      ],
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "HAIR_MODEL",
+          "link": 2
+        },
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 3
+        },
+        {
+          "name": "bald_image",
+          "type": "IMAGE",
+          "link": 6
+        }
+      ],
+      "outputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "links": [
+            96
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ApplyHairTransfer"
+      },
+      "widgets_values": [
+        102709385725920,
+        "randomize",
+        20,
+        1.5,
+        1,
+        1
+      ]
+    },
+    {
+      "id": 77,
+      "type": "ImageUpscaleWithModel",
+      "pos": [
+        798.0103149414062,
+        410.18438720703125
+      ],
+      "size": [
+        340.20001220703125,
+        46
+      ],
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "upscale_model",
+          "type": "UPSCALE_MODEL",
+          "link": 98
+        },
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 96
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            100
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ImageUpscaleWithModel"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 81,
+      "type": "SaveImage",
+      "pos": [
+        1291.11181640625,
+        389.0097961425781
+      ],
+      "size": [
+        315,
+        270
+      ],
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 100
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "SaveImage"
+      },
+      "widgets_values": [
+        "ComfyUI"
+      ]
+    },
+    {
+      "id": 15,
+      "type": "LoadImageByUrl //Browser",
+      "pos": [
+        -1373.7064208984375,
+        380.3265075683594
+      ],
+      "size": [
+        315,
+        82
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            15
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImageByUrl //Browser"
+      },
+      "widgets_values": [
+        "https://imgs.search.brave.com/YVrEvT_H1t4o9c-dUz2KzO-C0VNq37mfJ6db85DFfwY/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzL2I1LzEy/LzhmL2I1MTI4ZmY4/MTM5MjEwN2U2MTdk/NjMyN2QzZTMxYmFm/LmpwZw",
+        false
+      ]
+    },
+    {
+      "id": 6,
+      "type": "LoadImage",
+      "pos": [
+        -1319.7144775390625,
+        840.657958984375
+      ],
+      "size": [
+        315,
+        314
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            16
+          ],
+          "slot_index": 0
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "CurrentPicture.jpg",
+        "image"
+      ]
+    },
+    {
+      "id": 79,
+      "type": "UpscaleModelLoader",
+      "pos": [
+        749.2753295898438,
+        610.0960693359375
+      ],
+      "size": [
+        315,
+        58
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "UPSCALE_MODEL",
+          "type": "UPSCALE_MODEL",
+          "links": [
+            98
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "UpscaleModelLoader"
+      },
+      "widgets_values": [
+        "4x-UltraSharp.pth"
+      ]
+    }
+  ],
+  "links": [
+    [
+      2,
+      3,
+      0,
+      1,
+      0,
+      "HAIR_MODEL"
+    ],
+    [
+      3,
+      4,
+      0,
+      1,
+      1,
+      "IMAGE"
+    ],
+    [
+      4,
+      5,
+      0,
+      4,
+      0,
+      "IMAGE"
+    ],
+    [
+      6,
+      7,
+      0,
+      1,
+      2,
+      "IMAGE"
+    ],
+    [
+      9,
+      10,
+      0,
+      7,
+      0,
+      "BALD_MODEL"
+    ],
+    [
+      10,
+      11,
+      0,
+      7,
+      1,
+      "IMAGE"
+    ],
+    [
+      11,
+      12,
+      0,
+      11,
+      0,
+      "IMAGE"
+    ],
+    [
+      15,
+      15,
+      0,
+      5,
+      0,
+      "IMAGE"
+    ],
+    [
+      16,
+      6,
+      0,
+      12,
+      0,
+      "IMAGE"
+    ],
+    [
+      96,
+      1,
+      0,
+      77,
+      1,
+      "IMAGE"
+    ],
+    [
+      98,
+      79,
+      0,
+      77,
+      0,
+      "UPSCALE_MODEL"
+    ],
+    [
+      100,
+      77,
+      0,
+      81,
+      0,
+      "IMAGE"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.8140274938684079,
+      "offset": [
+        1850.0818030380067,
+        -228.42961779276317
+      ]
+    },
+    "node_versions": {
+      "ComfyUI_essentials": "64e38fd0f3b2e925573684f4a43727be80dc7d5b\n",
+      "comfyui_stablehair_ll": "4bbae92868f2ef8c9bf834a02e2b7b5febdb4d04",
+      "facerestore_cf": "67f90bc6be976fb58169866155346b0da13bebee",
+      "comfy-core": "0.3.13",
+      "comfyui-browser": "95fd55d663f4ebbc54949af5dfd1b0650153fc52\n"
+    }
+  },
+  "version": 0.4
+}

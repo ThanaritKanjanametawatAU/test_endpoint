@@ -3,7 +3,7 @@
     "workflow": {
       "6": {
         "inputs": {
-          "text": "A portrait of a character in ufotable-style fantasy whose ethereal magic style blends traditional holiday symbols with supernatural radiance. Their movements create spiral of golden light, brought to life through ufotable's signature dynamic animation. He is wearing reindeer horn on his head. In the background, there are Christmas Trees.",
+          "text": "A portrait of a character in ufotable-style fantasy.",
           "clip": [
             "11",
             0
@@ -56,7 +56,8 @@
         "inputs": {
           "clip_name1": "t5xxl_fp8_e4m3fn.safetensors",
           "clip_name2": "clip_l.safetensors",
-          "type": "flux"
+          "type": "flux",
+          "device": "default"
         },
         "class_type": "DualCLIPLoader",
         "_meta": {
@@ -143,7 +144,7 @@
       },
       "25": {
         "inputs": {
-          "noise_seed": 64048
+          "noise_seed": 32746
         },
         "class_type": "RandomNoise",
         "_meta": {
@@ -258,7 +259,7 @@
       },
       "49": {
         "inputs": {
-          "image_strength": "low",
+          "image_strength": "medium",
           "conditioning": [
             "45",
             0
@@ -285,23 +286,13 @@
             0
           ],
           "image": [
-            "51",
+            "55",
             0
           ]
         },
         "class_type": "CLIPVisionEncode",
         "_meta": {
           "title": "CLIP Vision Encode"
-        }
-      },
-      "51": {
-        "inputs": {
-          "image": "reindeer.png",
-          "upload": "image"
-        },
-        "class_type": "LoadImage",
-        "_meta": {
-          "title": "Load Image"
         }
       },
       "52": {
@@ -320,6 +311,16 @@
         "class_type": "ImageResizeKJ",
         "_meta": {
           "title": "Resize Image"
+        }
+      },
+      "55": {
+        "inputs": {
+          "url": "https://imgs.search.brave.com/nXZmSaMrB3oLjQ-EQED7gRUoGn2TO5sHCBjdfkdUR-A/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93MC5w/ZWFrcHguY29tL3dh/bGxwYXBlci83NDcv/MzI3L0hELXdhbGxw/YXBlci10YW5qaXJv/LXBpYy1mYW4tYXJ0/LWFuaW1lLWRlbW9u/LXNsYXllci1raW1l/dHN1LW5vLXlhaWJh/LmpwZw",
+          "cache": true
+        },
+        "class_type": "LoadImageByUrl //Browser",
+        "_meta": {
+          "title": "Load Image By URL"
         }
       }
     },

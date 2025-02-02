@@ -5,6 +5,11 @@ RUNPOD_ENDPOINT=
 RUNPOD_BEARER_TOKEN=
 ```
 
+Then set the environment variables
+```
+set -a && source .env && set +a
+```
+
 To run python code, you need to install the dependencies
 
 [Optional] Create Virtual Environment
@@ -17,6 +22,20 @@ Install the dependencies
 pip install -r requirements.txt
 ```
 
+Run Test Endpoint
+```
+python test_endpoint.py
+```
+
+Run Test Local Endpoint
+```
+python test_local_endpoint.py
+```
+
+or 
+```
+python test_endpoint.py --local true
+```
 
 
 # Formats
@@ -130,6 +149,50 @@ and only then, put this workflow and base64 image into the endpoint_body
 ```
 workflowAPI["3"]["inputs"]["seed"]
 ```
+
+<br><br>
+
+# Workflow #5: Anime Transform (Format #2)
+
+5.1 [Optional] Modify this for the user's prompt (To describe the specific details of the result image)
+```
+workflowAPI["6"]["inputs"]["text"]
+```
+
+5.2 Randomize this for different results
+```
+workflowAPI["25"]["inputs"]["noise_seed"]
+```
+
+<br>
+
+5.3 Put any **Image Address Online** into this, example link down below (Reference image for the Transformation)
+```
+workflowAPI["55"]["inputs"]["url"] = https://imgs.search.brave.com/nXZmSaMrB3oLjQ-EQED7gRUoGn2TO5sHCBjdfkdUR-A/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93MC5w/ZWFrcHguY29tL3dh/bGxwYXBlci83NDcv/MzI3L0hELXdhbGxw/YXBlci10YW5qaXJv/LXBpYy1mYW4tYXJ0/LWFuaW1lLWRlbW9u/LXNsYXllci1raW1l/dHN1LW5vLXlhaWJh/LmpwZw 
+```
+
+<br><br>
+
+
+
+# Workflow #6: Hair Style (Format #2)
+
+6.1 Modify the Seed for different results
+```
+workflowAPI["7"]["inputs"]["seed"]
+```
+
+<br>
+
+6.2 Put any **Image Address Online** into this, example link down below (Reference for the Hair Style, must be an image of a clear straight face)
+```
+workflowAPI["15"]["inputs"]["url"]
+```
+
+
+
+
+
 
 
 
