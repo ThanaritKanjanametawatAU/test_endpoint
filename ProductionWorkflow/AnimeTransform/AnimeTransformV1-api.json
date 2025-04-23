@@ -142,7 +142,7 @@
   },
   "25": {
     "inputs": {
-      "noise_seed": 462081635479919
+      "noise_seed": 918131983862212
     },
     "class_type": "RandomNoise",
     "_meta": {
@@ -213,16 +213,6 @@
     "class_type": "CLIPVisionEncode",
     "_meta": {
       "title": "CLIP Vision Encode"
-    }
-  },
-  "40": {
-    "inputs": {
-      "image": "current.jpg",
-      "upload": "image"
-    },
-    "class_type": "LoadImage",
-    "_meta": {
-      "title": "Load Image"
     }
   },
   "42": {
@@ -302,7 +292,7 @@
       "divisible_by": 2,
       "crop": "disabled",
       "image": [
-        "40",
+        "56",
         0
       ]
     },
@@ -314,6 +304,16 @@
   "55": {
     "inputs": {
       "url": "https://imgs.search.brave.com/nXZmSaMrB3oLjQ-EQED7gRUoGn2TO5sHCBjdfkdUR-A/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93MC5w/ZWFrcHguY29tL3dh/bGxwYXBlci83NDcv/MzI3L0hELXdhbGxw/YXBlci10YW5qaXJv/LXBpYy1mYW4tYXJ0/LWFuaW1lLWRlbW9u/LXNsYXllci1raW1l/dHN1LW5vLXlhaWJh/LmpwZw",
+      "cache": true
+    },
+    "class_type": "LoadImageByUrl //Browser",
+    "_meta": {
+      "title": "Load Image By URL"
+    }
+  },
+  "56": {
+    "inputs": {
+      "url": "https://res.cloudinary.com/prisma-forge/image/upload/v1745308700/current_enebuf.jpg",
       "cache": true
     },
     "class_type": "LoadImageByUrl //Browser",
