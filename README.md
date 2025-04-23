@@ -14,7 +14,7 @@ To run python code, you need to install the dependencies
 
 [Optional] Create Virtual Environment
 ```
-python -m venv venv && source venv/bin/activate
+python -m venv .venv && source .venv/bin/activate
 ```
 
 Install the dependencies
@@ -34,7 +34,7 @@ python test_local_endpoint.py
 
 or 
 ```
-python test_endpoint.py --local true
+python test_endpoint.py --local True
 ```
 
 
@@ -80,11 +80,14 @@ Note: Will support image link in the future
 Each workflow-api.json will require some modification for the user to input their own prompt, random seed, etc.
 So modify it first before putting it in the endpoint_body.
 
+Image Link: https://res.cloudinary.com/prisma-forge/image/upload/v1745308700/current_enebuf.jpg
+
+
 
 <br><br><br><br>
 Here are what should be modified (I'll inform when this is changed in the future)
 
-# Workflow #1: Base (Format #1)
+# Workflow #1: Base (Format #1: No Image)
 
 1.1 Modify this for the user's prompt 
 ```
@@ -102,7 +105,7 @@ workflowAPI["25"]["inputs"]["noise_seed"]
 
 <br><br>
 
-# Workflow #2: MooDeng (Format #2)
+# Workflow #2: MooDeng (Format #2: With Image)
 
 2.1 [Optional], Don't have to modify this for now.
 ```
@@ -124,7 +127,7 @@ and only then, put this workflow and base64 image into the endpoint_body
 
 <br><br>
 
-# Workflow #3: Chrismas, Reindeer, Santa, Elf (Format #2)
+# Workflow #3: Chrismas, Reindeer, Santa, Elf (Format #2: With Image)
 
 3.1 [Optional] Don't have to modify this for now.
 ```
@@ -143,7 +146,7 @@ and only then, put this workflow and base64 image into the endpoint_body
 
 <br><br>
 
-# Workflow #4: Padoru (Format #2)
+# Workflow #4: Padoru (Format #2: With Image)
 
 3.1 Randomize this for different results
 ```
@@ -152,7 +155,7 @@ workflowAPI["3"]["inputs"]["seed"]
 
 <br><br>
 
-# Workflow #5: Anime Transform (Format #2)
+# Workflow #5: Anime Transform (Format #2: With Image)
 
 5.1 [Optional] Modify this for the user's prompt (To describe the specific details of the result image)
 ```
@@ -178,7 +181,7 @@ List of Image Address Online (May Have Copyright Issues, Beware):
 
 
 
-# Workflow #6: Hair Style (Format #2)
+# Workflow #6: Hair Style (Format #2: With Image)
 
 6.1 Modify the Seed for different results
 ```

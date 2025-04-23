@@ -274,7 +274,31 @@ tests = {
 
 }
 
+# Track test results
+test_results = {
+    "passed": 0,
+    "failed": 0,
+    "failed_tests": []
+}
+
 # Run tests
 for test_name, params in tests.items():
     print(f"\nTesting {test_name}:")
-    test_endpoint(**params)
+    try:
+        test_endpoint(**params)
+        test_results["passed"] += 1
+    except Exception as e:
+        test_results["failed"] += 1
+        test_results["failed_tests"].append((test_name, str(e)))
+
+# Print summary
+print("\nTest Summary:")
+print(f"Total tests: {len(tests)}")
+print(f"Passed: {test_results['passed']}")
+print(f"Failed: {test_results['failed']}")
+if test_results["failed"] > 0:
+    print("\nFailed tests:")
+    for test_name, error in test_results["failed_tests"]:
+        print(f"- {test_name}: {error}")
+
+
