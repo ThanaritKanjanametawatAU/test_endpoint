@@ -167,7 +167,6 @@ tests = {
     # },
     "HairStyle": {
         "workflow_path": "ProductionWorkflow/HairStyle/HairStyleV1-api.json",
-        "image_path": "current.jpg",
         "modifications": [
             {
                 "path": ["7", "inputs", "seed"],
@@ -176,12 +175,16 @@ tests = {
             {
                 "path": ["15", "inputs", "url"],
                 "value": "https://imgs.search.brave.com/YVrEvT_H1t4o9c-dUz2KzO-C0VNq37mfJ6db85DFfwY/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzL2I1LzEy/LzhmL2I1MTI4ZmY4/MTM5MjEwN2U2MTdk/NjMyN2QzZTMxYmFm/LmpwZw"
+            },
+            {
+                # User's Image
+                "path": ["82", "inputs", "url"],
+                "value": "https://res.cloudinary.com/prisma-forge/image/upload/v1745308700/current_enebuf.jpg"
             }
         ]
     },
     "AnimeTransform": {
         "workflow_path": "ProductionWorkflow/AnimeTransform/AnimeTransformV1-api.json",
-        "image_path": "current.jpg",
         "modifications": [
             {
                 "path": ["25", "inputs", "noise_seed"],
@@ -190,66 +193,91 @@ tests = {
             {
                 "path": ["55", "inputs", "url"],
                 "value": "https://imgs.search.brave.com/nXZmSaMrB3oLjQ-EQED7gRUoGn2TO5sHCBjdfkdUR-A/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93MC5w/ZWFrcHguY29tL3dh/bGxwYXBlci83NDcv/MzI3L0hELXdhbGxw/YXBlci10YW5qaXJv/LXBpYy1mYW4tYXJ0/LWFuaW1lLWRlbW9u/LXNsYXllci1raW1l/dHN1LW5vLXlhaWJh/LmpwZw"
+            },
+            {
+                # User's Image
+                "path": ["56", "inputs", "url"],
+                "value": "https://res.cloudinary.com/prisma-forge/image/upload/v1745308700/current_enebuf.jpg"
             }
         ]
     },
     "Elf": {
-        "workflow_path": "ProductionWorkflow/Chrismas/ElfV1-api.json",
-        "image_path": "current.jpg",
+        "workflow_path": "ProductionWorkflow/Chrismas/Elf/ElfV1-api.json",
         "modifications": [
             {
                 "path": ["25", "inputs", "noise_seed"],
                 "value": random.randint(0, 2**16 - 1)
+            },
+            {
+                # User's Image
+                "path": ["55", "inputs", "url"],
+                "value": "https://res.cloudinary.com/prisma-forge/image/upload/v1745308700/current_enebuf.jpg"
             }
         ]
     },
 
     "Reindeer": {
-        "workflow_path": "ProductionWorkflow/Chrismas/ReindeerV1-api.json",
-        "image_path": "current.jpg",
+        "workflow_path": "ProductionWorkflow/Chrismas/Reindeer/ReindeerV1-api.json",
         "modifications": [
             {
                 "path": ["25", "inputs", "noise_seed"],
                 "value": random.randint(0, 2**16 - 1)
+            },
+            {
+                # User's Image
+                "path": ["55", "inputs", "url"],
+                "value": "https://res.cloudinary.com/prisma-forge/image/upload/v1745308700/current_enebuf.jpg"
             }
         ]
     },
 
     "Santa": {
-        "workflow_path": "ProductionWorkflow/Chrismas/SantaV1-api.json",
-        "image_path": "current.jpg",
+        "workflow_path": "ProductionWorkflow/Chrismas/Santa/SantaV1-api.json",
         "modifications": [
             {
                 "path": ["25", "inputs", "noise_seed"],
                 "value": random.randint(0, 2**16 - 1)
+            },
+            {
+                # User's Image
+                "path": ["55", "inputs", "url"],
+                "value": "https://res.cloudinary.com/prisma-forge/image/upload/v1745308700/current_enebuf.jpg"
             }
         ]
     },
 
     "Padoru": {
-        "workflow_path": "ProductionWorkflow/Chrismas/PadoruV1-api.json",
-        "image_path": "current.jpg",
+        "workflow_path": "ProductionWorkflow/Chrismas/Padoru/PadoruV1-api.json",
         "modifications": [
             {
                 "path": ["3", "inputs", "seed"],
                 "value": random.randint(0, 2**16 - 1)
-            }
+            },
+            {
+                # User's Image
+                "path": ["61", "inputs", "url"],
+                "value": "https://res.cloudinary.com/prisma-forge/image/upload/v1745308700/current_enebuf.jpg"
+            }  
         ]
     },
 
     "Chrismas": {
-        "workflow_path": "ProductionWorkflow/Chrismas/ChrismasV1-api.json",
-        "image_path": "current.jpg",
+        "workflow_path": "ProductionWorkflow/Chrismas/Chrismas/ChrismasV1-api.json",
         "modifications": [
             {
                 "path": ["25", "inputs", "noise_seed"],
                 "value": random.randint(0, 2**16 - 1)
+            },
+            {
+                # User's Image
+                "path": ["55", "inputs", "url"],
+                "value": "https://res.cloudinary.com/prisma-forge/image/upload/v1745308700/current_enebuf.jpg"
             }
         ]
     },
 
     "DevBase": {
-        "workflow_path": "ProductionWorkflow/Base/devbaseV1-api.json",
+        "workflow_path": "ProductionWorkflow/BasicPrompt/BasicPromptV1-api.json",
         "modifications": [
             {
                 "path": ["6", "inputs", "text"],
@@ -263,11 +291,15 @@ tests = {
     },
     "MooDeng": {
         "workflow_path": "ProductionWorkflow/MooDeng/MooDengV1-api.json",
-        "image_path": "current.jpg",
         "modifications": [
             {
                 "path": ["25", "inputs", "noise_seed"],
                 "value": random.randint(0, 2**16 - 1)
+            },
+            {
+                # User's Image
+                "path": ["44", "inputs", "url"],
+                "value": "https://res.cloudinary.com/prisma-forge/image/upload/v1745308700/current_enebuf.jpg"
             }
         ]
     },
