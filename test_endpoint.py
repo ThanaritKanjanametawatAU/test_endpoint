@@ -128,9 +128,17 @@ def test_endpoint(workflow_path, modifications=None, image_path=None):
         response_data = response.json()
         image_string = response_data["output"]["message"]
         
-        # Decode and save/show the image
-        image_data = base64.b64decode(image_string)
-        image = Image.open(io.BytesIO(image_data))
+        # Check if the message is a URL
+        if image_string.startswith(('http://', 'https://')):
+            print(f"Generated image URL: {image_string}")
+            # Download the image from URL
+            response = requests.get(image_string)
+            image = Image.open(io.BytesIO(response.content))
+        else:
+            # Decode base64 and create image
+            print(f"Decoding base64 image: {image_string}")
+            image_data = base64.b64decode(image_string)
+            image = Image.open(io.BytesIO(image_data))
         
 
         # Save image and print location
