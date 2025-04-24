@@ -1,8 +1,6 @@
 {
-  "id": "e3a0d7af-5570-4659-a3e8-ab7090011dcc",
-  "revision": 0,
-  "last_node_id": 82,
-  "last_link_id": 102,
+  "last_node_id": 81,
+  "last_link_id": 101,
   "nodes": [
     {
       "id": 4,
@@ -45,8 +43,6 @@
         }
       ],
       "properties": {
-        "cnr_id": "comfyui_essentials",
-        "ver": "9d9f4bedfc9f0321c19faf71855e228c93bd0dc9",
         "Node name for S&R": "ImageResize+"
       },
       "widgets_values": [
@@ -99,8 +95,6 @@
         }
       ],
       "properties": {
-        "cnr_id": "comfyui_essentials",
-        "ver": "9d9f4bedfc9f0321c19faf71855e228c93bd0dc9",
         "Node name for S&R": "ImageResize+"
       },
       "widgets_values": [
@@ -142,19 +136,17 @@
         {
           "name": "image",
           "type": "IMAGE",
-          "slot_index": 0,
           "links": [
             6
-          ]
+          ],
+          "slot_index": 0
         }
       ],
       "properties": {
-        "cnr_id": "comfyui_stablehair_ll",
-        "ver": "d00491937bc9f0c4fd96f010bf0c63fb5eabcd30",
         "Node name for S&R": "ApplyHairRemover"
       },
       "widgets_values": [
-        125616178045661,
+        584025910946340,
         "randomize",
         20,
         1,
@@ -186,8 +178,6 @@
         }
       ],
       "properties": {
-        "cnr_id": "comfyui_stablehair_ll",
-        "ver": "d00491937bc9f0c4fd96f010bf0c63fb5eabcd30",
         "Node name for S&R": "LoadStableHairRemoverModel"
       },
       "widgets_values": [
@@ -221,8 +211,6 @@
         }
       ],
       "properties": {
-        "cnr_id": "comfyui_stablehair_ll",
-        "ver": "d00491937bc9f0c4fd96f010bf0c63fb5eabcd30",
         "Node name for S&R": "LoadStableHairTransferModel"
       },
       "widgets_values": [
@@ -264,8 +252,43 @@
         }
       ],
       "properties": {
-        "cnr_id": "facerestore_cf",
-        "ver": "67f90bc6be976fb58169866155346b0da13bebee",
+        "Node name for S&R": "CropFace"
+      },
+      "widgets_values": [
+        "retinaface_resnet50"
+      ]
+    },
+    {
+      "id": 12,
+      "type": "CropFace",
+      "pos": [
+        -921.5365600585938,
+        847.2208862304688
+      ],
+      "size": [
+        315,
+        58
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 16
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            11
+          ]
+        }
+      ],
+      "properties": {
         "Node name for S&R": "CropFace"
       },
       "widgets_values": [
@@ -307,19 +330,17 @@
         {
           "name": "image",
           "type": "IMAGE",
-          "slot_index": 0,
           "links": [
             96
-          ]
+          ],
+          "slot_index": 0
         }
       ],
       "properties": {
-        "cnr_id": "comfyui_stablehair_ll",
-        "ver": "d00491937bc9f0c4fd96f010bf0c63fb5eabcd30",
         "Node name for S&R": "ApplyHairTransfer"
       },
       "widgets_values": [
-        768384805932929,
+        102709385725920,
         "randomize",
         20,
         1.5,
@@ -357,15 +378,13 @@
         {
           "name": "IMAGE",
           "type": "IMAGE",
-          "slot_index": 0,
           "links": [
             100
-          ]
+          ],
+          "slot_index": 0
         }
       ],
       "properties": {
-        "cnr_id": "comfy-core",
-        "ver": "0.3.29",
         "Node name for S&R": "ImageUpscaleWithModel"
       },
       "widgets_values": []
@@ -393,8 +412,6 @@
       ],
       "outputs": [],
       "properties": {
-        "cnr_id": "comfy-core",
-        "ver": "0.3.29",
         "Node name for S&R": "SaveImage"
       },
       "widgets_values": [
@@ -420,20 +437,56 @@
         {
           "name": "IMAGE",
           "type": "IMAGE",
-          "slot_index": 0,
           "links": [
             15
-          ]
+          ],
+          "slot_index": 0
         }
       ],
       "properties": {
-        "cnr_id": "comfyui-browser",
-        "ver": "95fd55d663f4ebbc54949af5dfd1b0650153fc52",
         "Node name for S&R": "LoadImageByUrl //Browser"
       },
       "widgets_values": [
         "https://imgs.search.brave.com/YVrEvT_H1t4o9c-dUz2KzO-C0VNq37mfJ6db85DFfwY/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzL2I1LzEy/LzhmL2I1MTI4ZmY4/MTM5MjEwN2U2MTdk/NjMyN2QzZTMxYmFm/LmpwZw",
         false
+      ]
+    },
+    {
+      "id": 6,
+      "type": "LoadImage",
+      "pos": [
+        -1319.7144775390625,
+        840.657958984375
+      ],
+      "size": [
+        315,
+        314
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            16
+          ],
+          "slot_index": 0
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "CurrentPicture.jpg",
+        "image"
       ]
     },
     {
@@ -448,7 +501,7 @@
         58
       ],
       "flags": {},
-      "order": 3,
+      "order": 4,
       "mode": 0,
       "inputs": [],
       "outputs": [
@@ -461,85 +514,10 @@
         }
       ],
       "properties": {
-        "cnr_id": "comfy-core",
-        "ver": "0.3.29",
         "Node name for S&R": "UpscaleModelLoader"
       },
       "widgets_values": [
         "4x-UltraSharp.pth"
-      ]
-    },
-    {
-      "id": 12,
-      "type": "CropFace",
-      "pos": [
-        -921.5365600585938,
-        847.2208862304688
-      ],
-      "size": [
-        315,
-        58
-      ],
-      "flags": {},
-      "order": 6,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "image",
-          "type": "IMAGE",
-          "link": 102
-        }
-      ],
-      "outputs": [
-        {
-          "name": "IMAGE",
-          "type": "IMAGE",
-          "links": [
-            11
-          ]
-        }
-      ],
-      "properties": {
-        "cnr_id": "facerestore_cf",
-        "ver": "67f90bc6be976fb58169866155346b0da13bebee",
-        "Node name for S&R": "CropFace"
-      },
-      "widgets_values": [
-        "retinaface_resnet50"
-      ]
-    },
-    {
-      "id": 82,
-      "type": "LoadImageByUrl //Browser",
-      "pos": [
-        -1328.369384765625,
-        845.886474609375
-      ],
-      "size": [
-        315,
-        82
-      ],
-      "flags": {},
-      "order": 4,
-      "mode": 0,
-      "inputs": [],
-      "outputs": [
-        {
-          "name": "IMAGE",
-          "type": "IMAGE",
-          "links": [
-            102
-          ]
-        }
-      ],
-      "properties": {
-        "cnr_id": "comfyui-browser",
-        "ver": "95fd55d663f4ebbc54949af5dfd1b0650153fc52",
-        "Node name for S&R": "LoadImageByUrl //Browser"
-      },
-      "widgets_values": [
-        "https://res.cloudinary.com/prisma-forge/image/upload/v1745308700/current_enebuf.jpg",
-        true
       ]
     }
   ],
@@ -609,6 +587,14 @@
       "IMAGE"
     ],
     [
+      16,
+      6,
+      0,
+      12,
+      0,
+      "IMAGE"
+    ],
+    [
       96,
       1,
       0,
@@ -631,24 +617,16 @@
       81,
       0,
       "IMAGE"
-    ],
-    [
-      102,
-      82,
-      0,
-      12,
-      0,
-      "IMAGE"
     ]
   ],
   "groups": [],
   "config": {},
   "extra": {
     "ds": {
-      "scale": 0.42409761837248483,
+      "scale": 0.8140274938684079,
       "offset": [
-        2510.8820715052575,
-        35.21061194875335
+        1850.0818030380067,
+        -228.42961779276317
       ]
     },
     "node_versions": {
@@ -657,13 +635,7 @@
       "facerestore_cf": "67f90bc6be976fb58169866155346b0da13bebee",
       "comfy-core": "0.3.13",
       "comfyui-browser": "95fd55d663f4ebbc54949af5dfd1b0650153fc52\n"
-    },
-    "ue_links": [],
-    "frontendVersion": "1.16.9",
-    "VHS_latentpreview": false,
-    "VHS_latentpreviewrate": 0,
-    "VHS_MetadataImage": true,
-    "VHS_KeepIntermediate": true
+    }
   },
   "version": 0.4
 }

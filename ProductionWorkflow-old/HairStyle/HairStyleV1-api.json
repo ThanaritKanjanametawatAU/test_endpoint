@@ -1,7 +1,7 @@
 {
   "1": {
     "inputs": {
-      "seed": 768384805932929,
+      "seed": 102709385725920,
       "steps": 20,
       "cfg": 1.5,
       "control_strength": 1,
@@ -68,9 +68,19 @@
       "title": "CropFace"
     }
   },
+  "6": {
+    "inputs": {
+      "image": "current.jpg",
+      "upload": "image"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "Load Image"
+    }
+  },
   "7": {
     "inputs": {
-      "seed": 125616178045661,
+      "seed": 584025910946340,
       "steps": 20,
       "strength": 1,
       "cfg": 1.5,
@@ -121,7 +131,7 @@
     "inputs": {
       "facedetection": "retinaface_resnet50",
       "image": [
-        "82",
+        "6",
         0
       ]
     },
@@ -176,16 +186,6 @@
     "class_type": "SaveImage",
     "_meta": {
       "title": "Save Image"
-    }
-  },
-  "82": {
-    "inputs": {
-      "url": "https://res.cloudinary.com/prisma-forge/image/upload/v1745308700/current_enebuf.jpg",
-      "cache": true
-    },
-    "class_type": "LoadImageByUrl //Browser",
-    "_meta": {
-      "title": "Load Image By URL"
     }
   }
 }

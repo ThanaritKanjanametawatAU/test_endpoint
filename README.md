@@ -144,6 +144,13 @@ workflowAPI["25"]["inputs"]["noise_seed"]
 <br>
 and only then, put this workflow and base64 image into the endpoint_body
 
+### Image Links
+#### Chrismas: https://res.cloudinary.com/prisma-forge/image/upload/v1745416525/ChrismasSuit_rkh8tj.png
+#### Santa: https://res.cloudinary.com/prisma-forge/image/upload/v1745416525/santa_zogqfd.png
+#### Elf: https://res.cloudinary.com/prisma-forge/image/upload/v1745416525/elf_rg7had.png
+#### Reindeer: https://res.cloudinary.com/prisma-forge/image/upload/v1745416525/reindeer_kh57gc.png
+#### Padoru: https://res.cloudinary.com/prisma-forge/image/upload/v1745416525/padoru_kc8d6h.png
+
 <br><br>
 
 # Workflow #4: Padoru (Format #2: With Image)

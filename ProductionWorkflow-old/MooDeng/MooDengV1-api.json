@@ -54,8 +54,7 @@
     "inputs": {
       "clip_name1": "t5xxl_fp8_e4m3fn.safetensors",
       "clip_name2": "clip_l.safetensors",
-      "type": "flux",
-      "device": "default"
+      "type": "flux"
     },
     "class_type": "DualCLIPLoader",
     "_meta": {
@@ -142,7 +141,7 @@
   },
   "25": {
     "inputs": {
-      "noise_seed": 1071407161747629
+      "noise_seed": 253668791855196
     },
     "class_type": "RandomNoise",
     "_meta": {
@@ -160,6 +159,16 @@
     "class_type": "FluxGuidance",
     "_meta": {
       "title": "FluxGuidance"
+    }
+  },
+  "30": {
+    "inputs": {
+      "image": "current.jpg",
+      "upload": "image"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "Load Image"
     }
   },
   "40": {
@@ -186,13 +195,13 @@
       "upscale_method": "lanczos",
       "megapixels": 1,
       "image": [
-        "44",
+        "30",
         0
       ]
     },
     "class_type": "ImageScaleToTotalPixels",
     "_meta": {
-      "title": "Scale Image to Total Pixels"
+      "title": "ImageScaleToTotalPixels"
     }
   },
   "43": {
@@ -209,16 +218,6 @@
     "class_type": "VAEEncode",
     "_meta": {
       "title": "VAE Encode"
-    }
-  },
-  "44": {
-    "inputs": {
-      "url": " https://res.cloudinary.com/prisma-forge/image/upload/v1745308700/current_enebuf.jpg",
-      "cache": true
-    },
-    "class_type": "LoadImageByUrl //Browser",
-    "_meta": {
-      "title": "Load Image By URL"
     }
   }
 }

@@ -1,7 +1,9 @@
 certifi==2024.8.30
 charset-normalizer==3.4.0
+cloudinary==1.44.0
 idna==3.10
 pillow==11.0.0
 python-dotenv==1.0.1
 requests==2.32.3
+six==1.17.0
 urllib3==2.2.3
