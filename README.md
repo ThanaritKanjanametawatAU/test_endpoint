@@ -153,6 +153,70 @@ Reference hairstyle examples:
 - https://i.imgur.com/VQRaWCl.png
 - https://i.imgur.com/9aSpX8O.png
 
+## Workflow #7: FishSpeech (Speech-to-Speech, Requires Audio Input)
+
+1. Set the user's speech audio URL:
+```
+["3", "inputs", "url"] = "https://your-audio-url.wav"
+```
+
+2. Set the text the user WANTS to speak (target text):
+```
+["4", "inputs", "text"] = "Your target text here"
+```
+
+3. Set the text the user ACTUALLY spoke (prompt text):
+```
+["4", "inputs", "prompt_text"] = "Your spoken text here"
+```
+
+4. (Optional) Adjust generation parameters:
+```
+["4", "inputs", "top_p"] = 0.7
+["4", "inputs", "repetition_penalty"] = 1.2
+["4", "inputs", "temperature"] = 0.7
+["4", "inputs", "seed"] = random value
+```
+
+Example audio: https://res.cloudinary.com/prisma-forge/video/upload/v1745741249/Mimi_Cleaned_cmrhrm.wav
+
+---
+
+## Workflow #8: SkyreelsA2 (Image Composition, Requires Multiple Images)
+
+1. Set Subject #1 image URL:
+```
+["181", "inputs", "url"] = "https://your-subject1-image-url.jpg"
+```
+
+2. Set Subject #2 image URL:
+```
+["182", "inputs", "url"] = "https://your-subject2-image-url.jpg"
+```
+
+3. Set Background image URL:
+```
+["183", "inputs", "url"] = "https://your-background-image-url.jpg"
+```
+
+4. (Optional) Adjust generation parameters:
+```
+["27", "inputs", "steps"] = 20
+["27", "inputs", "seed"] = random value
+["27", "inputs", "cfg"] = 4.0
+["27", "inputs", "denoise_strength"] = 0.92
+```
+
+5. Set the positive prompt (describes the scene):
+```
+["16", "inputs", "positive_prompt"] = "A man walking in the forest with his teddy bear."
+```
+
+Example images:
+- Subject #1: https://res.cloudinary.com/prisma-forge/image/upload/v1745769079/human_uqtgyv.png
+- Subject #2: https://res.cloudinary.com/prisma-forge/image/upload/v1745769078/thing_jvwp1d.jpg
+- Background: https://res.cloudinary.com/prisma-forge/image/upload/v1745769080/env_in4lyb.jpg
+
 # Default Test Input Image
 The script uses this image as the default input:
 https://res.cloudinary.com/prisma-forge/image/upload/v1745308700/current_enebuf.jpg
