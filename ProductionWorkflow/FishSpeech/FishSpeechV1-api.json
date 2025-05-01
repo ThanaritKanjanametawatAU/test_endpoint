@@ -1,0 +1,94 @@
+{
+  "1": {
+    "inputs": {
+      "config": "firefly_gan_vq.yaml",
+      "model": "fish-speech-1.5/firefly-gan-vq-fsq-8x1024-21hz-generator.pth",
+      "device": "cuda"
+    },
+    "class_type": "LoadVQGAN",
+    "_meta": {
+      "title": "EX_LoadVQGAN"
+    }
+  },
+  "2": {
+    "inputs": {
+      "device": "cuda",
+      "vqgan": [
+        "1",
+        0
+      ],
+      "audio": [
+        "3",
+        0
+      ]
+    },
+    "class_type": "AudioToPrompt",
+    "_meta": {
+      "title": "EX_AudioToPrompt"
+    }
+  },
+  "3": {
+    "inputs": {
+      "url": "https://res.cloudinary.com/prisma-forge/video/upload/v1745741249/Mimi_Cleaned_cmrhrm.wav"
+    },
+    "class_type": "AudioURLLoader",
+    "_meta": {
+      "title": "AudioURLLoader"
+    }
+  },
+  "4": {
+    "inputs": {
+      "precision": "bf16",
+      "device": "cuda",
+      "text": "はじめまして。ミミと申します。\n私は18歳です。東京の渋谷区に住んでいます。趣味は音楽を聴くことと料理をすることです。特に和食を作るのが大好きです。\n現在、東京大学の1年生で、経済学を専攻しています。将来は国際ビジネスの分野で働きたいと考えています。\n小さい頃から英語を勉強していて、今は中国語も勉強し始めました。新しい言語を学ぶことはとても楽しいです。",
+      "prompt_text": "Hey everyone! Sometimes small acts of kindness can make a big difference. A simple smile or helping someone can have a lasting impact. Let's try to be kind today and make our world little better, one small action at a time. Thank you for being here and being part of this.",
+      "num_samples": 1,
+      "max_new_tokens": 0,
+      "top_p": 0.7100000000000002,
+      "repetition_penalty": 1.2600000000000002,
+      "temperature": 0.7000000000000001,
+      "compile": "no",
+      "seed": 1547945222,
+      "iterative_prompt": "yes",
+      "chunk_length": 100,
+      "prompt_tokens": [
+        "2",
+        1
+      ]
+    },
+    "class_type": "Prompt2Semantic",
+    "_meta": {
+      "title": "EX_Prompt2Semantic"
+    }
+  },
+  "6": {
+    "inputs": {
+      "device": "cuda",
+      "vqgan": [
+        "1",
+        0
+      ],
+      "codes": [
+        "4",
+        0
+      ]
+    },
+    "class_type": "Semantic2Audio",
+    "_meta": {
+      "title": "EX_Semantic2Audio"
+    }
+  },
+  "7": {
+    "inputs": {
+      "filename_prefix": "ComfyUI",
+      "audio": [
+        "6",
+        0
+      ]
+    },
+    "class_type": "SaveAudioToMp3",
+    "_meta": {
+      "title": "EX_SaveAudioToMp3"
+    }
+  }
+}
