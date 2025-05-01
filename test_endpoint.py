@@ -126,40 +126,91 @@ def test_endpoint(workflow_path, modifications=None, image_path=None):
         
         # Parse the response
         response_data = response.json()
-        image_string = response_data["output"]["message"]
-        
-        # Check if the message is a URL
-        if image_string.startswith(('http://', 'https://')):
-            print(f"Generated image URL: {image_string}")
-            # Download the image from URL
-            response = requests.get(image_string)
-            image = Image.open(io.BytesIO(response.content))
-        else:
-            # Decode base64 and create image
-            print(f"Decoding base64 image: {image_string}")
-            image_data = base64.b64decode(image_string)
-            image = Image.open(io.BytesIO(image_data))
-        
+        output_message = response_data["output"]["message"]
 
-        # Save image and print location
+        def get_extension_from_url(url):
+            return os.path.splitext(url.split("?")[0])[1].lower()
+
+        def get_media_type_from_ext(ext):
+            if ext in [".jpg", ".jpeg", ".png", ".webp"]:
+                return "image"
+            elif ext in [".mp3", ".wav", ".ogg", ".flac"]:
+                return "audio"
+            elif ext in [".mp4", ".mov", ".avi", ".webm"]:
+                return "video"
+            return None
+
+        # Default values
+        file_ext = ".jpg"
+        media_type = "image"
+        file_data = None
+
+        # Handle Cloudinary dict
+        if isinstance(output_message, dict):
+            url = output_message.get("secure_url")
+            public_id = output_message.get("public_id", "")
+            print(f"Generated file URL: {url}")
+            print(f"Public ID: {public_id}")
+            file_ext = get_extension_from_url(url)
+            media_type = get_media_type_from_ext(file_ext)
+            response = requests.get(url)
+            file_data = response.content
+
+        # Handle direct URL
+        elif isinstance(output_message, str) and output_message.startswith(('http://', 'https://')):
+            print(f"Generated file URL: {output_message}")
+            file_ext = get_extension_from_url(output_message)
+            media_type = get_media_type_from_ext(file_ext)
+            response = requests.get(output_message)
+            file_data = response.content
+
+        # Handle base64
+        else:
+            print(f"Decoding base64 output")
+            try:
+                file_data = base64.b64decode(output_message)
+                # Try to detect file type from header
+                if file_data[:4] == b'\x00\x00\x00\x18' or file_data[4:8] == b'ftyp':
+                    file_ext = ".mp4"
+                    media_type = "video"
+                elif file_data[:4] == b'RIFF' and file_data[8:12] == b'WAVE':
+                    file_ext = ".wav"
+                    media_type = "audio"
+                elif file_data[:3] == b'ID3' or file_data[:2] == b'\xff\xfb':
+                    file_ext = ".mp3"
+                    media_type = "audio"
+                elif file_data[:8] == b'\x89PNG\r\n\x1a\n':
+                    file_ext = ".png"
+                    media_type = "image"
+                elif file_data[:2] == b'\xff\xd8':
+                    file_ext = ".jpg"
+                    media_type = "image"
+                else:
+                    # Default to image
+                    file_ext = ".jpg"
+                    media_type = "image"
+            except Exception as e:
+                print(f"Failed to decode base64: {e}")
+                raise
+
+        # Save file and print location
         output_dir = "local_endpoint_result" if args.local else "runpod_endpoint_result"
         os.makedirs(output_dir, exist_ok=True)
-        output_path = f"{output_dir}/{test_name}.jpg"
-        image.save(output_path)
-        print(f"Image saved as {output_path}")
+        output_path = f"{output_dir}/{test_name}{file_ext}"
+
+        if media_type == "image":
+            image = Image.open(io.BytesIO(file_data))
+            image.save(output_path)
+        else:
+            with open(output_path, "wb") as f:
+                f.write(file_data)
+
+        print(f"{media_type.capitalize()} saved as {output_path}")
         
-        # Print that the test name is completed with green checkmark
-        print(f"\033[92m{test_name} completed\033[0m")
         
-    except requests.exceptions.RequestException as e:
-        print(f"\033[91m{test_name} failed\033[0m - Network error: {str(e)}")
-    except json.JSONDecodeError:
-        print(f"\033[91m{test_name} failed\033[0m - Invalid JSON response")
-    except KeyError:
-        print(f"\033[91m{test_name} failed\033[0m - Unexpected response format")
     except Exception as e:
-        print(f"\033[91m{test_name} failed\033[0m - Unexpected error: {str(e)}")
-        print(f"Response content: {response.text}")
+        raise  
+        
 
 # Define test cases with their modifications
 tests = {
@@ -173,6 +224,88 @@ tests = {
     #         }
     #     ]
     # },
+    "SkyreelsA2": {
+        "workflow_path": "ProductionWorkflow/SkyreelsA2/SkyreelsA2V1-api.json",
+        "modifications": [
+            {
+                # Subject #1 Image
+                "path": ["181", "inputs", "url"],
+                    "value": "https://res.cloudinary.com/prisma-forge/image/upload/v1745769079/human_uqtgyv.png"
+            },
+            {
+                # Subject #2 Image
+                "path": ["182", "inputs", "url"],
+                "value": "https://res.cloudinary.com/prisma-forge/image/upload/v1745769078/thing_jvwp1d.jpg"
+            },
+            {
+                # Background Image
+                "path": ["183", "inputs", "url"],
+                "value": "https://res.cloudinary.com/prisma-forge/image/upload/v1745769080/env_in4lyb.jpg"
+            },
+            {
+                # Sampling Steps
+                "path": ["27", "inputs", "steps"],
+                "value": 1
+            },
+            {
+                # Seed
+                "path": ["27", "inputs", "seed"],
+                "value": random.randint(0, 2**16 - 1)
+            },
+            {
+                # CFG Scale
+                "path": ["27", "inputs", "cfg"],
+                "value": 4.0
+            },
+            {
+                # Denoise Strength
+                "path": ["27", "inputs", "denoise_strength"],
+                "value": 0.92
+            },
+            {
+                # Prompt
+                "path": ["16", "inputs", "positive_prompt"],
+                "value": "A man walking in the forest with his teddy bear."
+            }
+            
+        ]
+    },
+    "FishSpeech": {
+        "workflow_path": "ProductionWorkflow/FishSpeech/FishSpeechV1-api.json",
+        "modifications": [
+            {
+                # User's Speech Audio
+                "path": ["3", "inputs", "url"],
+                "value": "https://res.cloudinary.com/prisma-forge/video/upload/v1745741249/Mimi_Cleaned_cmrhrm.wav"
+            },
+            {
+                # Text That user WANT to speak
+                "path": ["4", "inputs", "text"],
+                "value": "はじめまして。ミミと申します。\n私は18歳です。東京の渋谷区に住んでいます。趣味は音楽を聴くことと料理をすることです。特に和食を作るのが大好きです。\n現在、東京大学の1年生で、経済学を専攻しています。将来は国際ビジネスの分野で働きたいと考えています。\n小さい頃から英語を勉強していて、今は中国語も勉強し始めました。新しい言語を学ぶことはとても楽しいです。"
+            },
+            {
+                # Text That user spoke
+                "path": ["4", "inputs", "prompt_text"],
+                "value": "Hey everyone! Sometimes small acts of kindness can make a big difference. A simple smile or helping someone can have a lasting impact. Let's try to be kind today and make our world little better, one small action at a time. Thank you for being here and being part of this."
+            },
+            {
+                "path": ["4", "inputs", "top_p"],
+                "value": 0.7
+            },
+            {
+                "path": ["4", "inputs", "repetition_penalty"],
+                "value": 1.2
+            },
+            {
+                "path": ["4", "inputs", "temperature"],
+                "value": 0.7
+            },           
+            {
+                "path": ["4", "inputs", "seed"],
+                "value": random.randint(0, 2**16 - 1)
+            }
+        ]
+    },
     "HairStyle": {
         "workflow_path": "ProductionWorkflow/HairStyle/HairStyleV1-api.json",
         "modifications": [
@@ -314,6 +447,56 @@ tests = {
 
 }
 
+tests = {
+    "SkyreelsA2": {
+        "workflow_path": "ProductionWorkflow/SkyreelsA2/SkyreelsA2V1-api.json",
+        "modifications": [
+            {
+                # Subject #1 Image
+                "path": ["181", "inputs", "url"],
+                    "value": "https://res.cloudinary.com/prisma-forge/image/upload/v1745769079/human_uqtgyv.png"
+            },
+            {
+                # Subject #2 Image
+                "path": ["182", "inputs", "url"],
+                "value": "https://res.cloudinary.com/prisma-forge/image/upload/v1745769078/thing_jvwp1d.jpg"
+            },
+            {
+                # Background Image
+                "path": ["183", "inputs", "url"],
+                "value": "https://res.cloudinary.com/prisma-forge/image/upload/v1745769080/env_in4lyb.jpg"
+            },
+            {
+                # Sampling Steps
+                "path": ["27", "inputs", "steps"],
+                "value": 1
+            },
+            {
+                # Seed
+                "path": ["27", "inputs", "seed"],
+                "value": random.randint(0, 2**16 - 1)
+            },
+            {
+                # CFG Scale
+                "path": ["27", "inputs", "cfg"],
+                "value": 4.0
+            },
+            {
+                # Denoise Strength
+                "path": ["27", "inputs", "denoise_strength"],
+                "value": 0.92
+            },
+            {
+                # Prompt
+                "path": ["16", "inputs", "positive_prompt"],
+                "value": "A man walking in the forest with his teddy bear."
+            }
+            
+        ]
+    
+    }
+}
+
 # Track test results
 test_results = {
     "passed": 0,
@@ -327,9 +510,25 @@ for test_name, params in tests.items():
     try:
         test_endpoint(**params)
         test_results["passed"] += 1
+        print(f"\033[92m{test_name} completed\033[0m")
+    except requests.exceptions.RequestException as e:
+        test_results["failed"] += 1
+        test_results["failed_tests"].append((test_name, f"Network error: {str(e)}"))
+        print(f"\033[91m{test_name} failed\033[0m - Network error: {str(e)}")
+    except json.JSONDecodeError:
+        test_results["failed"] += 1
+        test_results["failed_tests"].append((test_name, "Invalid JSON response"))
+        print(f"\033[91m{test_name} failed\033[0m - Invalid JSON response")
+    except KeyError:
+        test_results["failed"] += 1
+        test_results["failed_tests"].append((test_name, "Unexpected response format"))
+        print(f"\033[91m{test_name} failed\033[0m - Unexpected response format")
     except Exception as e:
         test_results["failed"] += 1
-        test_results["failed_tests"].append((test_name, str(e)))
+        test_results["failed_tests"].append((test_name, f"Unexpected error: {str(e)}"))
+        print(f"\033[91m{test_name} failed\033[0m - Unexpected error: {str(e)}")
+        if 'response' in locals():
+            print(f"Response content: {response.text}")
 
 # Print summary
 print("\nTest Summary:")
