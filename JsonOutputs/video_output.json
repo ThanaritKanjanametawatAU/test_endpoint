@@ -1,0 +1,20 @@
+Output: {'78': {'text': ['1x1280x720'
+        ]
+    }, '123': {'text': ['1x1250x1250'
+        ]
+    }, '183': {'video': [
+            {'filename': 'ComfyUI_00022.mp4', 'subfolder': '', 'type': 'output', 'format': 'video/h264-mp4', 'frame_rate': 15.0, 'workflow': 'ComfyUI_00022.png', 'fullpath': '/home/money/BakstersShowcaseEndpoint/ComfyUIProdMirror/output/ComfyUI_00022.mp4'
+            }
+        ]
+    }, '30': {'gifs': [
+            {'filename': 'WanVideoWrapper_Skyreels-A2_00001.mp4', 'subfolder': '', 'type': 'temp', 'format': 'video/h264-mp4', 'frame_rate': 16.0, 'workflow': 'WanVideoWrapper_Skyreels-A2_00001.png', 'fullpath': '/home/money/BakstersShowcaseEndpoint/ComfyUIProdMirror/temp/WanVideoWrapper_Skyreels-A2_00001.mp4'
+            }
+        ]
+    }, '164': {'text': ['9x624x624'
+        ]
+    }, '176': {'text': ['69x832x480'
+        ]
+    }, '147': {'text': ['81x832x480'
+        ]
+    }
+}
