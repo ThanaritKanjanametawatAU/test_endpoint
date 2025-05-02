@@ -172,9 +172,9 @@ Reference hairstyle examples:
 
 4. (Optional) Adjust generation parameters:
 ```
-["4", "inputs", "top_p"] = 0.7
-["4", "inputs", "repetition_penalty"] = 1.2
-["4", "inputs", "temperature"] = 0.7
+["4", "inputs", "top_p"] = 0.7 (0.6-0.9)
+["4", "inputs", "repetition_penalty"] = 1.2 (1-1.5)
+["4", "inputs", "temperature"] = 0.7 (0.6-0.9)
 ["4", "inputs", "seed"] = random value
 ```
 
@@ -201,10 +201,10 @@ Example audio: https://res.cloudinary.com/prisma-forge/video/upload/v1745741249/
 
 4. (Optional) Adjust generation parameters:
 ```
-["27", "inputs", "steps"] = 20
+["27", "inputs", "steps"] = 20 (1-20)
 ["27", "inputs", "seed"] = random value
-["27", "inputs", "cfg"] = 4.0
-["27", "inputs", "denoise_strength"] = 0.92
+["27", "inputs", "cfg"] = 4.0 (1-8)
+["27", "inputs", "denoise_strength"] = 0.92 (0.5-1)
 ```
 
 5. Set the positive prompt (describes the scene):
