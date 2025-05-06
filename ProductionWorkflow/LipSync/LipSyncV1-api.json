@@ -1,0 +1,166 @@
+{
+  "32": {
+    "inputs": {
+      "ckpt_name": "svd_xt_1_1.safetensors"
+    },
+    "class_type": "ImageOnlyCheckpointLoader",
+    "_meta": {
+      "title": "Image Only Checkpoint Loader (img2vid model)"
+    }
+  },
+  "46": {
+    "inputs": {
+      "mode": "resize",
+      "supersample": "true",
+      "resampling": "nearest",
+      "rescale_factor": 1.0000000000000002,
+      "resize_width": 576,
+      "resize_height": 1024,
+      "image": [
+        "56",
+        0
+      ]
+    },
+    "class_type": "Image Resize",
+    "_meta": {
+      "title": "Image Resize"
+    }
+  },
+  "51": {
+    "inputs": {
+      "min_resolution": 576,
+      "duration": [
+        "62",
+        0
+      ],
+      "expand_ratio": 1,
+      "clip_vision": [
+        "32",
+        1
+      ],
+      "vae": [
+        "32",
+        2
+      ],
+      "audio": [
+        "61",
+        0
+      ],
+      "image": [
+        "46",
+        0
+      ],
+      "weight_dtype": [
+        "53",
+        1
+      ]
+    },
+    "class_type": "SONIC_PreData",
+    "_meta": {
+      "title": "SONIC_PreData"
+    }
+  },
+  "53": {
+    "inputs": {
+      "sonic_unet": "unet.pth",
+      "ip_audio_scale": 1,
+      "use_interframe": true,
+      "dtype": "fp16",
+      "model": [
+        "32",
+        0
+      ]
+    },
+    "class_type": "SONICTLoader",
+    "_meta": {
+      "title": "SONICTLoader"
+    }
+  },
+  "54": {
+    "inputs": {
+      "anything": [
+        "51",
+        0
+      ]
+    },
+    "class_type": "easy cleanGpuUsed",
+    "_meta": {
+      "title": "Clean VRAM Used"
+    }
+  },
+  "56": {
+    "inputs": {
+      "url": " https://res.cloudinary.com/prisma-forge/image/upload/v1745308700/current_enebuf.jpg",
+      "cache": true
+    },
+    "class_type": "LoadImageByUrl //Browser",
+    "_meta": {
+      "title": "Load Image By URL"
+    }
+  },
+  "61": {
+    "inputs": {
+      "url": "https://res.cloudinary.com/prisma-forge/video/upload/v1746338002/comfyui-adae925e-5b5d-491d-bf48-fd6d081245ad-e1.mp3"
+    },
+    "class_type": "MediaUtilities_AudioURLLoader",
+    "_meta": {
+      "title": "MediaUtilities_AudioURLLoader"
+    }
+  },
+  "62": {
+    "inputs": {
+      "audio": [
+        "61",
+        0
+      ]
+    },
+    "class_type": "MediaUtilities_AudioDuration",
+    "_meta": {
+      "title": "MediaUtilities_AudioDuration"
+    }
+  },
+  "63": {
+    "inputs": {
+      "fps": 25,
+      "filename_prefix": "ComfyUI",
+      "format": "mp4",
+      "codec": "auto",
+      "quality": 85,
+      "convert_from_gif": "True",
+      "loop_count": 0,
+      "pingpong": "False",
+      "frames": [
+        "64",
+        0
+      ],
+      "audio": [
+        "61",
+        0
+      ]
+    },
+    "class_type": "MediaUtilities_SaveVideo",
+    "_meta": {
+      "title": "MediaUtilities_SaveVideo"
+    }
+  },
+  "64": {
+    "inputs": {
+      "seed": 231464893,
+      "inference_steps": 1,
+      "dynamic_scale": 1,
+      "fps": 25,
+      "model": [
+        "53",
+        0
+      ],
+      "data_dict": [
+        "54",
+        0
+      ]
+    },
+    "class_type": "SONICSampler",
+    "_meta": {
+      "title": "SONICSampler"
+    }
+  }
+}

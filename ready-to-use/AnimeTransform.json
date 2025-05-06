@@ -144,7 +144,7 @@
       },
       "25": {
         "inputs": {
-          "noise_seed": 55332
+          "noise_seed": 52027
         },
         "class_type": "RandomNoise",
         "_meta": {

@@ -80,7 +80,7 @@ def modify_workflow(workflow, modifications):
     
     return modified
 
-def test_endpoint(workflow_path, modifications=None, image_path=None):
+def test_endpoint(test_name, workflow_path, modifications=None, image_path=None):
     # Read the workflow JSON file
     with open(workflow_path, 'r') as f:
         workflow = json.load(f)
@@ -115,102 +115,59 @@ def test_endpoint(workflow_path, modifications=None, image_path=None):
             return
 
     try:
-        # Make the API request
+        # Make the API request to /run
+        if args.local:
+            run_url = "http://localhost:8000/run"
+        else:
+            run_url = endpoint.rstrip("/") + "/run"
         start_time = time.time()
-        response = requests.post(endpoint, json=endpoint_body, headers=headers)
-        end_time = time.time()
-        print(f"Time taken: {end_time - start_time} seconds")
+        response = requests.post(run_url, json=endpoint_body, headers=headers)
+        response.raise_for_status()
+        print(f"Request sent.")
         save_request_body(test_name, endpoint_body)
         print(f"Saved request body to ready-to-use/{test_name}.json")
-        response.raise_for_status()
         
-        # Parse the response
-        response_data = response.json()
-        output_message = response_data["output"]["message"]
+        # Get job id
+        job_data = response.json()
+        job_id = job_data.get("id")
+        if not job_id:
+            print(f"No job id returned: {job_data}")
+            return
+        print(f"Job ID: {job_id}")
 
-        def get_extension_from_url(url):
-            return os.path.splitext(url.split("?")[0])[1].lower()
-
-        def get_media_type_from_ext(ext):
-            if ext in [".jpg", ".jpeg", ".png", ".webp"]:
-                return "image"
-            elif ext in [".mp3", ".wav", ".ogg", ".flac"]:
-                return "audio"
-            elif ext in [".mp4", ".mov", ".avi", ".webm"]:
-                return "video"
-            return None
-
-        # Default values
-        file_ext = ".jpg"
-        media_type = "image"
-        file_data = None
-
-        # Handle Cloudinary dict
-        if isinstance(output_message, dict):
-            url = output_message.get("secure_url")
-            public_id = output_message.get("public_id", "")
-            print(f"Generated file URL: {url}")
-            print(f"Public ID: {public_id}")
-            file_ext = get_extension_from_url(url)
-            media_type = get_media_type_from_ext(file_ext)
-            response = requests.get(url)
-            file_data = response.content
-
-        # Handle direct URL
-        elif isinstance(output_message, str) and output_message.startswith(('http://', 'https://')):
-            print(f"Generated file URL: {output_message}")
-            file_ext = get_extension_from_url(output_message)
-            media_type = get_media_type_from_ext(file_ext)
-            response = requests.get(output_message)
-            file_data = response.content
-
-        # Handle base64
+        # Poll for status
+        if args.local:
+            status_url = f"http://localhost:8000/status/{job_id}"
         else:
-            print(f"Decoding base64 output")
-            try:
-                file_data = base64.b64decode(output_message)
-                # Try to detect file type from header
-                if file_data[:4] == b'\x00\x00\x00\x18' or file_data[4:8] == b'ftyp':
-                    file_ext = ".mp4"
-                    media_type = "video"
-                elif file_data[:4] == b'RIFF' and file_data[8:12] == b'WAVE':
-                    file_ext = ".wav"
-                    media_type = "audio"
-                elif file_data[:3] == b'ID3' or file_data[:2] == b'\xff\xfb':
-                    file_ext = ".mp3"
-                    media_type = "audio"
-                elif file_data[:8] == b'\x89PNG\r\n\x1a\n':
-                    file_ext = ".png"
-                    media_type = "image"
-                elif file_data[:2] == b'\xff\xd8':
-                    file_ext = ".jpg"
-                    media_type = "image"
-                else:
-                    # Default to image
-                    file_ext = ".jpg"
-                    media_type = "image"
-            except Exception as e:
-                print(f"Failed to decode base64: {e}")
-                raise
-
-        # Save file and print location
-        output_dir = "local_endpoint_result" if args.local else "runpod_endpoint_result"
-        os.makedirs(output_dir, exist_ok=True)
-        output_path = f"{output_dir}/{test_name}{file_ext}"
-
-        if media_type == "image":
-            image = Image.open(io.BytesIO(file_data))
-            image.save(output_path)
-        else:
-            with open(output_path, "wb") as f:
-                f.write(file_data)
-
-        print(f"{media_type.capitalize()} saved as {output_path}")
-        
-        
+            status_url = endpoint.rstrip("/") + f"/status/{job_id}"
+        while True:
+            time.sleep(20)
+            poll_response = requests.get(status_url, headers=headers)
+            poll_response.raise_for_status()
+            poll_data = poll_response.json()
+            status = poll_data.get("status")
+            print(f"Status: {status}")
+            if status == "COMPLETED":
+                end_time = time.time()
+                duration = end_time - start_time
+                minutes = int(duration // 60)
+                seconds = int(duration % 60)
+                output = poll_data.get("output", {})
+                message = output.get("message", {})
+                public_id = message.get("public_id")
+                secure_url = message.get("secure_url")
+                print(f"Public ID: {public_id}")
+                print(f"Secure URL: {secure_url}")
+                print(f"Time taken: {minutes}m {seconds}s")
+                break
+            elif status in ("FAILED", "CANCELLED", "ERROR"):
+                print(f"Job failed or cancelled: {poll_data}")
+                break
+            else:
+                print(f"Job not complete yet. Will poll again in 20 seconds...")
     except Exception as e:
-        raise  
-        
+        print(f"Exception occurred: {e}")
+        raise
 
 # Define test cases with their modifications
 tests = {
@@ -224,6 +181,27 @@ tests = {
     #         }
     #     ]
     # },
+    "LipSync": {
+        "workflow_path": "ProductionWorkflow/LipSync/LipSyncV1-api.json",
+        "modifications": [
+            {
+                "path": ["56", "inputs", "url"],
+                "value": "https://res.cloudinary.com/prisma-forge/image/upload/v1745308700/current_enebuf.jpg"
+            },
+            {
+                "path": ["61", "inputs", "url"],
+                "value": "https://res.cloudinary.com/prisma-forge/video/upload/v1746338002/comfyui-adae925e-5b5d-491d-bf48-fd6d081245ad-e1.mp3"
+            },
+            {
+                "path": ["64", "inputs", "seed"],
+                "value": random.randint(0, 2**16 - 1)
+            },
+            {
+                "path": ["64", "inputs", "inference_steps"],
+                "value": 1
+            }            
+        ]
+    },
     "SkyreelsA2": {
         "workflow_path": "ProductionWorkflow/SkyreelsA2/SkyreelsA2V1-api.json",
         "modifications": [
@@ -274,8 +252,8 @@ tests = {
         "workflow_path": "ProductionWorkflow/FishSpeech/FishSpeechV1-api.json",
         "modifications": [
             {
-                # User's Speech Audio
-                "path": ["3", "inputs", "url"],
+                # User's Speech Audio (CHANGED)
+                "path": ["11", "inputs", "url"],
                 "value": "https://res.cloudinary.com/prisma-forge/video/upload/v1745741249/Mimi_Cleaned_cmrhrm.wav"
             },
             {
@@ -447,55 +425,6 @@ tests = {
 
 }
 
-tests = {
-    "SkyreelsA2": {
-        "workflow_path": "ProductionWorkflow/SkyreelsA2/SkyreelsA2V1-api.json",
-        "modifications": [
-            {
-                # Subject #1 Image
-                "path": ["181", "inputs", "url"],
-                    "value": "https://res.cloudinary.com/prisma-forge/image/upload/v1745769079/human_uqtgyv.png"
-            },
-            {
-                # Subject #2 Image
-                "path": ["182", "inputs", "url"],
-                "value": "https://res.cloudinary.com/prisma-forge/image/upload/v1745769078/thing_jvwp1d.jpg"
-            },
-            {
-                # Background Image
-                "path": ["183", "inputs", "url"],
-                "value": "https://res.cloudinary.com/prisma-forge/image/upload/v1745769080/env_in4lyb.jpg"
-            },
-            {
-                # Sampling Steps
-                "path": ["27", "inputs", "steps"],
-                "value": 1
-            },
-            {
-                # Seed
-                "path": ["27", "inputs", "seed"],
-                "value": random.randint(0, 2**16 - 1)
-            },
-            {
-                # CFG Scale
-                "path": ["27", "inputs", "cfg"],
-                "value": 4.0
-            },
-            {
-                # Denoise Strength
-                "path": ["27", "inputs", "denoise_strength"],
-                "value": 0.92
-            },
-            {
-                # Prompt
-                "path": ["16", "inputs", "positive_prompt"],
-                "value": "A man walking in the forest with his teddy bear."
-            }
-            
-        ]
-    
-    }
-}
 
 # Track test results
 test_results = {
@@ -508,7 +437,7 @@ test_results = {
 for test_name, params in tests.items():
     print(f"\nTesting {test_name}:")
     try:
-        test_endpoint(**params)
+        test_endpoint(test_name, **params)
         test_results["passed"] += 1
         print(f"\033[92m{test_name} completed\033[0m")
     except requests.exceptions.RequestException as e:

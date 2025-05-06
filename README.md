@@ -44,6 +44,10 @@ Input and output images are now handled via URLs instead of base64 encoding, mak
 
 Each workflow requires specific modifications for customization:
 
+# Default Test Input Image
+The script uses this image as the default input:
+https://res.cloudinary.com/prisma-forge/image/upload/v1745308700/current_enebuf.jpg
+
 ## Workflow #1: DevBase (Basic Prompt, No Input Image)
 
 1. Modify the prompt text:
@@ -157,7 +161,7 @@ Reference hairstyle examples:
 
 1. Set the user's speech audio URL:
 ```
-["3", "inputs", "url"] = "https://your-audio-url.wav"
+["11", "inputs", "url"] = "https://your-audio-url.wav"
 ```
 
 2. Set the text the user WANTS to speak (target text):
@@ -212,14 +216,44 @@ Example audio: https://res.cloudinary.com/prisma-forge/video/upload/v1745741249/
 ["16", "inputs", "positive_prompt"] = "A man walking in the forest with his teddy bear."
 ```
 
+
+
 Example images:
 - Subject #1: https://res.cloudinary.com/prisma-forge/image/upload/v1745769079/human_uqtgyv.png
 - Subject #2: https://res.cloudinary.com/prisma-forge/image/upload/v1745769078/thing_jvwp1d.jpg
 - Background: https://res.cloudinary.com/prisma-forge/image/upload/v1745769080/env_in4lyb.jpg
 
-# Default Test Input Image
-The script uses this image as the default input:
-https://res.cloudinary.com/prisma-forge/image/upload/v1745308700/current_enebuf.jpg
+
+
+## Workflow #9: LipSync (Image-to-Audio Lip Sync, Requires Input Image and Audio)
+
+This workflow generates a lip-synced video by combining a user-provided image and an audio file. The model animates the lips in the image to match the provided audio.
+
+1. Set the input image URL (the face to be animated):
+```
+["56", "inputs", "url"] = "https://your-image-url.jpg"
+```
+
+2. Set the input audio file URL (the speech or sound to sync):
+```
+["61", "inputs", "url"] = "https://your-audio-url.mp3"
+```
+
+3. Randomize for different results (optional):
+```
+["64", "inputs", "seed"] = random value
+```
+
+4. Set the number of inference steps (controls animation quality/speed):
+```
+["64", "inputs", "inference_steps"] = 20 (1-20)
+```
+
+### Example URLs:
+- Example image: https://res.cloudinary.com/prisma-forge/image/upload/v1745308700/current_enebuf.jpg
+- Example audio: https://res.cloudinary.com/prisma-forge/video/upload/v1746338002/comfyui-adae925e-5b5d-491d-bf48-fd6d081245ad-e1.mp3
+
+---
 
 
 

@@ -1,8 +1,8 @@
 {
   "id": "206247b6-9fec-4ed2-8927-e4f388c674d4",
   "revision": 0,
-  "last_node_id": 183,
-  "last_link_id": 341,
+  "last_node_id": 185,
+  "last_link_id": 344,
   "nodes": [
     {
       "id": 75,
@@ -173,68 +173,6 @@
         1,
         16777215
       ]
-    },
-    {
-      "id": 78,
-      "type": "GetImageSizeAndCount",
-      "pos": [
-        -1690.6025390625,
-        740.5386962890625
-      ],
-      "size": [
-        277.20001220703125,
-        86
-      ],
-      "flags": {},
-      "order": 36,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "image",
-          "type": "IMAGE",
-          "link": 337
-        }
-      ],
-      "outputs": [
-        {
-          "name": "image",
-          "type": "IMAGE",
-          "links": [
-            114
-          ]
-        },
-        {
-          "label": "width",
-          "name": "width",
-          "type": "INT",
-          "links": [
-            99
-          ]
-        },
-        {
-          "label": "height",
-          "name": "height",
-          "type": "INT",
-          "links": [
-            100
-          ]
-        },
-        {
-          "label": "count",
-          "name": "count",
-          "type": "INT",
-          "links": [
-            101
-          ]
-        }
-      ],
-      "properties": {
-        "cnr_id": "comfyui-kjnodes",
-        "ver": "26aea1889d02d0bf072ac9aae0e90e5815ffa175",
-        "Node name for S&R": "GetImageSizeAndCount",
-        "widget_ue_connectable": {}
-      },
-      "widgets_values": []
     },
     {
       "id": 81,
@@ -460,7 +398,7 @@
           ]
         },
         {
-          "label": "width",
+          "label": "1280 width",
           "name": "width",
           "type": "INT",
           "links": [
@@ -468,7 +406,7 @@
           ]
         },
         {
-          "label": "height",
+          "label": "720 height",
           "name": "height",
           "type": "INT",
           "links": [
@@ -476,7 +414,7 @@
           ]
         },
         {
-          "label": "count",
+          "label": "1 count",
           "name": "count",
           "type": "INT",
           "links": [
@@ -884,7 +822,7 @@
           "links": null
         },
         {
-          "label": "624 height",
+          "label": "336 height",
           "name": "height",
           "type": "INT",
           "links": null
@@ -2303,45 +2241,6 @@
       ]
     },
     {
-      "id": 38,
-      "type": "WanVideoVAELoader",
-      "pos": [
-        -87.99845123291016,
-        -731.7169189453125
-      ],
-      "size": [
-        372.7727966308594,
-        82
-      ],
-      "flags": {},
-      "order": 21,
-      "mode": 0,
-      "inputs": [],
-      "outputs": [
-        {
-          "name": "vae",
-          "type": "WANVAE",
-          "slot_index": 0,
-          "links": [
-            43,
-            81
-          ]
-        }
-      ],
-      "properties": {
-        "cnr_id": "ComfyUI-WanVideoWrapper",
-        "ver": "d9b1f4d1a5aea91d101ae97a54714a5861af3f50",
-        "Node name for S&R": "WanVideoVAELoader",
-        "widget_ue_connectable": {}
-      },
-      "widgets_values": [
-        "Wan2_1_VAE_bf16.safetensors",
-        "bf16"
-      ],
-      "color": "#322",
-      "bgcolor": "#533"
-    },
-    {
       "id": 148,
       "type": "SimpleMath+",
       "pos": [
@@ -2513,62 +2412,6 @@
       "widgets_values": []
     },
     {
-      "id": 176,
-      "type": "GetImageSizeAndCount",
-      "pos": [
-        2486.351806640625,
-        -562.218017578125
-      ],
-      "size": [
-        277.20001220703125,
-        86
-      ],
-      "flags": {},
-      "order": 65,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "image",
-          "type": "IMAGE",
-          "link": 334
-        }
-      ],
-      "outputs": [
-        {
-          "name": "image",
-          "type": "IMAGE",
-          "links": [
-            333
-          ]
-        },
-        {
-          "label": "width",
-          "name": "width",
-          "type": "INT",
-          "links": null
-        },
-        {
-          "label": "height",
-          "name": "height",
-          "type": "INT",
-          "links": []
-        },
-        {
-          "label": "count",
-          "name": "count",
-          "type": "INT",
-          "links": []
-        }
-      ],
-      "properties": {
-        "cnr_id": "comfyui-kjnodes",
-        "ver": "26aea1889d02d0bf072ac9aae0e90e5815ffa175",
-        "Node name for S&R": "GetImageSizeAndCount",
-        "widget_ue_connectable": {}
-      },
-      "widgets_values": []
-    },
-    {
       "id": 166,
       "type": "GetNode",
       "pos": [
@@ -2582,7 +2425,7 @@
       "flags": {
         "collapsed": true
       },
-      "order": 22,
+      "order": 21,
       "mode": 0,
       "inputs": [],
       "outputs": [
@@ -2617,7 +2460,7 @@
         82
       ],
       "flags": {},
-      "order": 23,
+      "order": 22,
       "mode": 0,
       "inputs": [],
       "outputs": [
@@ -2759,7 +2602,7 @@
         82
       ],
       "flags": {},
-      "order": 24,
+      "order": 23,
       "mode": 0,
       "inputs": [],
       "outputs": [
@@ -2796,7 +2639,7 @@
         82
       ],
       "flags": {},
-      "order": 25,
+      "order": 24,
       "mode": 0,
       "inputs": [],
       "outputs": [
@@ -2833,7 +2676,7 @@
         82
       ],
       "flags": {},
-      "order": 26,
+      "order": 25,
       "mode": 0,
       "inputs": [],
       "outputs": [
@@ -2856,91 +2699,6 @@
         "https://res.cloudinary.com/prisma-forge/image/upload/v1745769080/env_in4lyb.jpg",
         true
       ]
-    },
-    {
-      "id": 45,
-      "type": "WanVideoVRAMManagement",
-      "pos": [
-        -648.1126708984375,
-        -1001.77392578125
-      ],
-      "size": [
-        315,
-        58
-      ],
-      "flags": {},
-      "order": 27,
-      "mode": 0,
-      "inputs": [],
-      "outputs": [
-        {
-          "name": "vram_management_args",
-          "type": "VRAM_MANAGEMENTARGS",
-          "links": []
-        }
-      ],
-      "properties": {
-        "cnr_id": "ComfyUI-WanVideoWrapper",
-        "ver": "d9b1f4d1a5aea91d101ae97a54714a5861af3f50",
-        "Node name for S&R": "WanVideoVRAMManagement",
-        "widget_ue_connectable": {}
-      },
-      "widgets_values": [
-        1
-      ],
-      "color": "#223",
-      "bgcolor": "#335"
-    },
-    {
-      "id": 16,
-      "type": "WanVideoTextEncode",
-      "pos": [
-        787.8640747070312,
-        -91.52558898925781
-      ],
-      "size": [
-        420.30511474609375,
-        261.5306701660156
-      ],
-      "flags": {},
-      "order": 47,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "t5",
-          "type": "WANTEXTENCODER",
-          "link": 15
-        },
-        {
-          "name": "model_to_offload",
-          "shape": 7,
-          "type": "WANVIDEOMODEL",
-          "link": 79
-        }
-      ],
-      "outputs": [
-        {
-          "name": "text_embeds",
-          "type": "WANVIDEOTEXTEMBEDS",
-          "slot_index": 0,
-          "links": [
-            30
-          ]
-        }
-      ],
-      "properties": {
-        "cnr_id": "ComfyUI-WanVideoWrapper",
-        "ver": "d9b1f4d1a5aea91d101ae97a54714a5861af3f50",
-        "Node name for S&R": "WanVideoTextEncode",
-        "widget_ue_connectable": {}
-      },
-      "widgets_values": [
-        "A man walking in tyhe forest with his teddy bear.",
-        "Bright tones, overexposed, static, blurred details, subtitles, style, works, paintings, images, static, overall gray, worst quality, low quality, JPEG compression residue, ugly, incomplete, extra fingers, poorly drawn hands, poorly drawn faces, deformed, disfigured, misshapen limbs, fused fingers, still picture, messy background, three legs, many people in the background, walking backwards",
-        true
-      ],
-      "color": "#332922",
-      "bgcolor": "#593930"
     },
     {
       "id": 27,
@@ -3075,7 +2833,7 @@
         202
       ],
       "flags": {},
-      "order": 28,
+      "order": 26,
       "mode": 0,
       "inputs": [],
       "outputs": [
@@ -3083,9 +2841,7 @@
           "name": "torch_compile_args",
           "type": "WANCOMPILEARGS",
           "slot_index": 0,
-          "links": [
-            341
-          ]
+          "links": []
         }
       ],
       "properties": {
@@ -3102,6 +2858,284 @@
         64,
         true,
         128
+      ],
+      "color": "#223",
+      "bgcolor": "#335"
+    },
+    {
+      "id": 176,
+      "type": "GetImageSizeAndCount",
+      "pos": [
+        2486.351806640625,
+        -562.218017578125
+      ],
+      "size": [
+        277.20001220703125,
+        86
+      ],
+      "flags": {},
+      "order": 65,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 334
+        }
+      ],
+      "outputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "links": [
+            343
+          ]
+        },
+        {
+          "label": "width",
+          "name": "width",
+          "type": "INT",
+          "links": null
+        },
+        {
+          "label": "height",
+          "name": "height",
+          "type": "INT",
+          "links": []
+        },
+        {
+          "label": "count",
+          "name": "count",
+          "type": "INT",
+          "links": []
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-kjnodes",
+        "ver": "26aea1889d02d0bf072ac9aae0e90e5815ffa175",
+        "Node name for S&R": "GetImageSizeAndCount",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 185,
+      "type": "MediaUtilities_SaveVideo",
+      "pos": [
+        2929.88134765625,
+        -535.94580078125
+      ],
+      "size": [
+        315,
+        246
+      ],
+      "flags": {},
+      "order": 66,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "frames",
+          "type": "IMAGE",
+          "link": 343
+        },
+        {
+          "name": "audio",
+          "shape": 7,
+          "type": "AUDIO",
+          "link": null
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "cnr_id": "mediaurlloader",
+        "ver": "3829fc714743fbdd92242de47effac48520c32c5",
+        "Node name for S&R": "MediaUtilities_SaveVideo",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        16,
+        "ComfyUI",
+        "mp4",
+        "auto",
+        85,
+        "True",
+        0,
+        "False"
+      ]
+    },
+    {
+      "id": 38,
+      "type": "WanVideoVAELoader",
+      "pos": [
+        -87.99845123291016,
+        -731.7169189453125
+      ],
+      "size": [
+        372.7727966308594,
+        82
+      ],
+      "flags": {},
+      "order": 27,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "vae",
+          "type": "WANVAE",
+          "slot_index": 0,
+          "links": [
+            43,
+            81
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "ComfyUI-WanVideoWrapper",
+        "ver": "d9b1f4d1a5aea91d101ae97a54714a5861af3f50",
+        "Node name for S&R": "WanVideoVAELoader",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "Wan2_1_VAE_bf16.safetensors",
+        "bf16"
+      ],
+      "color": "#322",
+      "bgcolor": "#533"
+    },
+    {
+      "id": 11,
+      "type": "LoadWanVideoT5TextEncoder",
+      "pos": [
+        -94.43940734863281,
+        -913.262451171875
+      ],
+      "size": [
+        377.1661376953125,
+        130
+      ],
+      "flags": {},
+      "order": 28,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "wan_t5_model",
+          "type": "WANTEXTENCODER",
+          "slot_index": 0,
+          "links": [
+            15
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "ComfyUI-WanVideoWrapper",
+        "ver": "d9b1f4d1a5aea91d101ae97a54714a5861af3f50",
+        "Node name for S&R": "LoadWanVideoT5TextEncoder",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "umt5-xxl-enc-fp8_e4m3fn.safetensors",
+        "bf16",
+        "offload_device",
+        "disabled"
+      ],
+      "color": "#332922",
+      "bgcolor": "#593930"
+    },
+    {
+      "id": 78,
+      "type": "GetImageSizeAndCount",
+      "pos": [
+        -1697.9642333984375,
+        710.040771484375
+      ],
+      "size": [
+        277.20001220703125,
+        86
+      ],
+      "flags": {},
+      "order": 36,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 337
+        }
+      ],
+      "outputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "links": [
+            114
+          ]
+        },
+        {
+          "label": "1250 width",
+          "name": "width",
+          "type": "INT",
+          "links": [
+            99
+          ]
+        },
+        {
+          "label": "1250 height",
+          "name": "height",
+          "type": "INT",
+          "links": [
+            100
+          ]
+        },
+        {
+          "label": "1 count",
+          "name": "count",
+          "type": "INT",
+          "links": [
+            101
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-kjnodes",
+        "ver": "26aea1889d02d0bf072ac9aae0e90e5815ffa175",
+        "Node name for S&R": "GetImageSizeAndCount",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 45,
+      "type": "WanVideoVRAMManagement",
+      "pos": [
+        -648.1126708984375,
+        -1001.77392578125
+      ],
+      "size": [
+        315,
+        58
+      ],
+      "flags": {},
+      "order": 29,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "vram_management_args",
+          "type": "VRAM_MANAGEMENTARGS",
+          "links": [
+            344
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "ComfyUI-WanVideoWrapper",
+        "ver": "d9b1f4d1a5aea91d101ae97a54714a5861af3f50",
+        "Node name for S&R": "WanVideoVRAMManagement",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        1
       ],
       "color": "#223",
       "bgcolor": "#335"
@@ -3125,7 +3159,7 @@
           "name": "compile_args",
           "shape": 7,
           "type": "WANCOMPILEARGS",
-          "link": 341
+          "link": null
         },
         {
           "name": "block_swap_args",
@@ -3143,7 +3177,7 @@
           "name": "vram_management_args",
           "shape": 7,
           "type": "VRAM_MANAGEMENTARGS",
-          "link": null
+          "link": 344
         },
         {
           "name": "vace_model",
@@ -3170,99 +3204,65 @@
         "widget_ue_connectable": {}
       },
       "widgets_values": [
-        "wan2_1_SkyreelsA2_fp8_e4m3fn.safetensors",
+        "Wan2_1_SkyreelsA2_fp8_e4m3fn.safetensors",
         "fp16",
         "fp8_e4m3fn",
-        "main_device",
+        "offload_device",
         "sdpa"
       ],
       "color": "#223",
       "bgcolor": "#335"
     },
     {
-      "id": 11,
-      "type": "LoadWanVideoT5TextEncoder",
+      "id": 16,
+      "type": "WanVideoTextEncode",
       "pos": [
-        -94.43940734863281,
-        -913.262451171875
+        787.8640747070312,
+        -91.52558898925781
       ],
       "size": [
-        377.1661376953125,
-        130
+        420.30511474609375,
+        261.5306701660156
       ],
       "flags": {},
-      "order": 29,
+      "order": 47,
       "mode": 0,
-      "inputs": [],
+      "inputs": [
+        {
+          "name": "t5",
+          "type": "WANTEXTENCODER",
+          "link": 15
+        },
+        {
+          "name": "model_to_offload",
+          "shape": 7,
+          "type": "WANVIDEOMODEL",
+          "link": 79
+        }
+      ],
       "outputs": [
         {
-          "name": "wan_t5_model",
-          "type": "WANTEXTENCODER",
+          "name": "text_embeds",
+          "type": "WANVIDEOTEXTEMBEDS",
           "slot_index": 0,
           "links": [
-            15
+            30
           ]
         }
       ],
       "properties": {
         "cnr_id": "ComfyUI-WanVideoWrapper",
         "ver": "d9b1f4d1a5aea91d101ae97a54714a5861af3f50",
-        "Node name for S&R": "LoadWanVideoT5TextEncoder",
+        "Node name for S&R": "WanVideoTextEncode",
         "widget_ue_connectable": {}
       },
       "widgets_values": [
-        "umt5-xxl-enc_fp8_e4m3fn.safetensors",
-        "bf16",
-        "main_device",
-        "disabled"
+        "A man walking in the forest with his teddy bear.",
+        "Bright tones, overexposed, static, blurred details, subtitles, style, works, paintings, images, static, overall gray, worst quality, low quality, JPEG compression residue, ugly, incomplete, extra fingers, poorly drawn hands, poorly drawn faces, deformed, disfigured, misshapen limbs, fused fingers, still picture, messy background, three legs, many people in the background, walking backwards",
+        true
       ],
       "color": "#332922",
       "bgcolor": "#593930"
-    },
-    {
-      "id": 180,
-      "type": "SaveVideo",
-      "pos": [
-        2876.45947265625,
-        -389.4788818359375
-      ],
-      "size": [
-        315,
-        246
-      ],
-      "flags": {},
-      "order": 66,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "frames",
-          "type": "IMAGE",
-          "link": 333
-        },
-        {
-          "name": "audio",
-          "shape": 7,
-          "type": "AUDIO",
-          "link": null
-        }
-      ],
-      "outputs": [],
-      "properties": {
-        "aux_id": "ThanaritKanjanametawatAU/ComfyUI-MediaURLLoader",
-        "ver": "be32a6a26dd20cd62e6b82719e5eb0a27a7bcd04",
-        "Node name for S&R": "SaveVideo",
-        "widget_ue_connectable": {}
-      },
-      "widgets_values": [
-        15,
-        "ComfyUI",
-        "gif",
-        "h264",
-        85,
-        "True",
-        0,
-        "False"
-      ]
     }
   ],
   "links": [
@@ -3779,14 +3779,6 @@
       "IMAGE"
     ],
     [
-      333,
-      176,
-      0,
-      180,
-      0,
-      "IMAGE"
-    ],
-    [
       334,
       146,
       0,
@@ -3835,25 +3827,33 @@
       "IMAGE"
     ],
     [
-      341,
-      35,
+      343,
+      176,
+      0,
+      185,
+      0,
+      "IMAGE"
+    ],
+    [
+      344,
+      45,
       0,
       22,
-      0,
-      "WANCOMPILEARGS"
+      3,
+      "VRAM_MANAGEMENTARGS"
     ]
   ],
   "groups": [],
   "config": {},
   "extra": {
     "ds": {
-      "scale": 1.3109994191499965,
+      "scale": 0.9090909090909098,
       "offset": [
-        -2261.1447902843533,
-        591.2894340949416
+        625.1283128344215,
+        1253.5311686862774
       ]
     },
-    "frontendVersion": "1.17.11",
+    "frontendVersion": "1.18.6",
     "node_versions": {
       "ComfyUI-WanVideoWrapper": "5a2383621a05825d0d0437781afcb8552d9590fd",
       "comfy-core": "0.3.26",
@@ -3864,7 +3864,8 @@
     "VHS_latentpreviewrate": 0,
     "VHS_MetadataImage": true,
     "VHS_KeepIntermediate": true,
-    "ue_links": []
+    "ue_links": [],
+    "links_added_by_ue": []
   },
   "version": 0.4
 }

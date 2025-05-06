@@ -20,22 +20,13 @@
             0
           ],
           "audio": [
-            "3",
+            "11",
             0
           ]
         },
         "class_type": "AudioToPrompt",
         "_meta": {
           "title": "EX_AudioToPrompt"
-        }
-      },
-      "3": {
-        "inputs": {
-          "url": "https://res.cloudinary.com/prisma-forge/video/upload/v1745741249/Mimi_Cleaned_cmrhrm.wav"
-        },
-        "class_type": "AudioURLLoader",
-        "_meta": {
-          "title": "AudioURLLoader"
         }
       },
       "4": {
@@ -50,7 +41,7 @@
           "repetition_penalty": 1.2,
           "temperature": 0.7,
           "compile": "no",
-          "seed": 39757,
+          "seed": 43352,
           "iterative_prompt": "yes",
           "chunk_length": 100,
           "prompt_tokens": [
@@ -91,6 +82,15 @@
         "class_type": "SaveAudioToMp3",
         "_meta": {
           "title": "EX_SaveAudioToMp3"
+        }
+      },
+      "11": {
+        "inputs": {
+          "url": "https://res.cloudinary.com/prisma-forge/video/upload/v1745741249/Mimi_Cleaned_cmrhrm.wav"
+        },
+        "class_type": "MediaUtilities_AudioURLLoader",
+        "_meta": {
+          "title": "MediaUtilities_AudioURLLoader"
         }
       }
     }

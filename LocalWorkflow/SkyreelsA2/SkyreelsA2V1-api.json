@@ -3,7 +3,7 @@
     "inputs": {
       "model_name": "umt5-xxl-enc-fp8_e4m3fn.safetensors",
       "precision": "bf16",
-      "load_device": "main_device",
+      "load_device": "offload_device",
       "quantization": "disabled"
     },
     "class_type": "LoadWanVideoT5TextEncoder",
@@ -15,7 +15,7 @@
     "inputs": {
       "positive_prompt": "A man walking in the forest with his teddy bear.",
       "negative_prompt": "Bright tones, overexposed, static, blurred details, subtitles, style, works, paintings, images, static, overall gray, worst quality, low quality, JPEG compression residue, ugly, incomplete, extra fingers, poorly drawn hands, poorly drawn faces, deformed, disfigured, misshapen limbs, fused fingers, still picture, messy background, three legs, many people in the background, walking backwards",
-      "force_offload": false,
+      "force_offload": true,
       "t5": [
         "11",
         0
@@ -35,7 +35,7 @@
       "model": "Wan2_1_SkyreelsA2_fp8_e4m3fn.safetensors",
       "base_precision": "fp16",
       "quantization": "fp8_e4m3fn",
-      "load_device": "main_device",
+      "load_device": "offload_device",
       "attention_mode": "sdpa",
       "vram_management_args": [
         "45",
@@ -53,7 +53,7 @@
       "cfg": 4.000000000000001,
       "shift": 8.000000000000002,
       "seed": 43,
-      "force_offload": false,
+      "force_offload": true,
       "scheduler": "unipc",
       "riflex_freq_index": 0,
       "denoise_strength": 0.9200000000000002,
@@ -137,7 +137,7 @@
   },
   "45": {
     "inputs": {
-      "offload_percent": 0
+      "offload_percent": 1
     },
     "class_type": "WanVideoVRAMManagement",
     "_meta": {
@@ -181,7 +181,7 @@
       "noise_aug_strength": 0,
       "start_latent_strength": 1,
       "end_latent_strength": 1,
-      "force_offload": false,
+      "force_offload": true,
       "fun_or_fl2v_model": false,
       "vae": [
         "38",
@@ -207,7 +207,7 @@
       "strength_2": 1,
       "crop": "center",
       "combine_embeds": "concat",
-      "force_offload": false,
+      "force_offload": true,
       "tiles": 0,
       "ratio": 0.20000000000000004,
       "clip_vision": [
