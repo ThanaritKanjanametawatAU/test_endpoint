@@ -1,18 +1,18 @@
 {
-  "id": "4605f8a9-d19c-4695-b9c7-5936e8e2ed78",
+  "id": "00000000-0000-0000-0000-000000000000",
   "revision": 0,
-  "last_node_id": 63,
-  "last_link_id": 85,
+  "last_node_id": 64,
+  "last_link_id": 29,
   "nodes": [
     {
       "id": 32,
       "type": "ImageOnlyCheckpointLoader",
       "pos": [
-        263,
-        92
+        100,
+        130
       ],
       "size": [
-        369.6000061035156,
+        396.3746032714844,
         98
       ],
       "flags": {},
@@ -21,36 +21,30 @@
       "inputs": [],
       "outputs": [
         {
-          "label": "MODEL",
           "name": "MODEL",
           "type": "MODEL",
-          "slot_index": 0,
           "links": [
-            67
+            22
           ]
         },
         {
-          "label": "CLIP_VISION",
           "name": "CLIP_VISION",
           "type": "CLIP_VISION",
-          "slot_index": 1,
           "links": [
-            62
+            17
           ]
         },
         {
-          "label": "VAE",
           "name": "VAE",
           "type": "VAE",
-          "slot_index": 2,
           "links": [
-            63
+            18
           ]
         }
       ],
       "properties": {
         "cnr_id": "comfy-core",
-        "ver": "0.3.26",
+        "ver": "0.3.31",
         "Node name for S&R": "ImageOnlyCheckpointLoader",
         "widget_ue_connectable": {}
       },
@@ -59,49 +53,14 @@
       ]
     },
     {
-      "id": 56,
-      "type": "LoadImageByUrl //Browser",
-      "pos": [
-        46.66061019897461,
-        343.9296875
-      ],
-      "size": [
-        315,
-        82
-      ],
-      "flags": {},
-      "order": 1,
-      "mode": 0,
-      "inputs": [],
-      "outputs": [
-        {
-          "name": "IMAGE",
-          "type": "IMAGE",
-          "links": [
-            72
-          ]
-        }
-      ],
-      "properties": {
-        "cnr_id": "comfyui-browser",
-        "ver": "95fd55d663f4ebbc54949af5dfd1b0650153fc52",
-        "Node name for S&R": "LoadImageByUrl //Browser",
-        "widget_ue_connectable": {}
-      },
-      "widgets_values": [
-        " https://res.cloudinary.com/prisma-forge/image/upload/v1745308700/current_enebuf.jpg",
-        true
-      ]
-    },
-    {
       "id": 53,
       "type": "SONICTLoader",
       "pos": [
-        933,
-        49
+        596.3746337890625,
+        130
       ],
       "size": [
-        216.16339111328125,
+        270,
         150
       ],
       "flags": {},
@@ -109,27 +68,24 @@
       "mode": 0,
       "inputs": [
         {
-          "label": "model",
           "name": "model",
           "type": "MODEL",
-          "link": 67
+          "link": 22
         }
       ],
       "outputs": [
         {
-          "label": "model",
           "name": "model",
           "type": "MODEL_SONIC",
-          "slot_index": 0,
           "links": [
-            68
+            27
           ]
         },
         {
           "name": "dtype",
           "type": "DTYPE",
           "links": [
-            74
+            21
           ]
         }
       ],
@@ -144,157 +100,27 @@
         1,
         true,
         "fp16"
-      ],
-      "color": "#432",
-      "bgcolor": "#653"
+      ]
     },
     {
-      "id": 46,
-      "type": "Image Resize",
+      "id": 62,
+      "type": "MediaUtilities_AudioDuration",
       "pos": [
-        530,
-        270
+        596.3746337890625,
+        718
       ],
       "size": [
-        315,
-        178
+        219.65780639648438,
+        26
       ],
       "flags": {},
       "order": 4,
       "mode": 0,
       "inputs": [
         {
-          "label": "image",
-          "name": "image",
-          "type": "IMAGE",
-          "link": 72
-        }
-      ],
-      "outputs": [
-        {
-          "label": "IMAGE",
-          "name": "IMAGE",
-          "type": "IMAGE",
-          "slot_index": 0,
-          "links": [
-            65
-          ]
-        }
-      ],
-      "properties": {
-        "cnr_id": "pr-was-node-suite-comfyui-47064894",
-        "ver": "9ae952b1b435d2bd846bfe6516919b5a8b9201aa",
-        "Node name for S&R": "Image Resize",
-        "widget_ue_connectable": {}
-      },
-      "widgets_values": [
-        "resize",
-        "true",
-        "nearest",
-        1,
-        576,
-        1024
-      ],
-      "color": "#323",
-      "bgcolor": "#535"
-    },
-    {
-      "id": 51,
-      "type": "SONIC_PreData",
-      "pos": [
-        940,
-        250
-      ],
-      "size": [
-        210,
-        186
-      ],
-      "flags": {},
-      "order": 6,
-      "mode": 0,
-      "inputs": [
-        {
-          "label": "clip_vision",
-          "name": "clip_vision",
-          "type": "CLIP_VISION",
-          "link": 62
-        },
-        {
-          "label": "vae",
-          "name": "vae",
-          "type": "VAE",
-          "link": 63
-        },
-        {
-          "label": "audio",
           "name": "audio",
           "type": "AUDIO",
-          "link": 80
-        },
-        {
-          "label": "image",
-          "name": "image",
-          "type": "IMAGE",
-          "link": 65
-        },
-        {
-          "name": "weight_dtype",
-          "type": "DTYPE",
-          "link": 74
-        },
-        {
-          "name": "duration",
-          "type": "FLOAT",
-          "widget": {
-            "name": "duration"
-          },
-          "link": 82
-        }
-      ],
-      "outputs": [
-        {
-          "label": "data_dict",
-          "name": "data_dict",
-          "type": "SONIC_PREDATA",
-          "slot_index": 0,
-          "links": [
-            69
-          ]
-        }
-      ],
-      "properties": {
-        "cnr_id": "ComfyUI_Sonic",
-        "ver": "6595df02e72406fe23baebc12ac2088832d7ff9b",
-        "Node name for S&R": "SONIC_PreData",
-        "widget_ue_connectable": {}
-      },
-      "widgets_values": [
-        576,
-        4,
-        1
-      ],
-      "color": "#432",
-      "bgcolor": "#653"
-    },
-    {
-      "id": 62,
-      "type": "MediaUtilities_AudioDuration",
-      "pos": [
-        264.38336181640625,
-        527.5443115234375
-      ],
-      "size": [
-        352.79998779296875,
-        26
-      ],
-      "flags": {},
-      "order": 5,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "audio",
-          "type": "AUDIO",
-          "link": 83
+          "link": 24
         }
       ],
       "outputs": [
@@ -302,85 +128,49 @@
           "name": "duration",
           "type": "FLOAT",
           "links": [
-            82
+            16
           ]
         }
       ],
       "properties": {
         "cnr_id": "mediaurlloader",
-        "ver": "d6844d85212c388106eb57f4eb22c3723cf0697c",
+        "ver": "fec44ba12755112288540db111061594ebcbbae5",
         "Node name for S&R": "MediaUtilities_AudioDuration",
         "widget_ue_connectable": {}
       },
       "widgets_values": []
     },
     {
-      "id": 61,
-      "type": "MediaUtilities_AudioURLLoader",
-      "pos": [
-        59.43285369873047,
-        760.5709838867188
-      ],
-      "size": [
-        365.4000244140625,
-        58
-      ],
-      "flags": {},
-      "order": 2,
-      "mode": 0,
-      "inputs": [],
-      "outputs": [
-        {
-          "name": "AUDIO",
-          "type": "AUDIO",
-          "links": [
-            80,
-            83,
-            84
-          ]
-        }
-      ],
-      "properties": {
-        "cnr_id": "mediaurlloader",
-        "ver": "d6844d85212c388106eb57f4eb22c3723cf0697c",
-        "Node name for S&R": "MediaUtilities_AudioURLLoader",
-        "widget_ue_connectable": {}
-      },
-      "widgets_values": [
-        "https://res.cloudinary.com/prisma-forge/video/upload/v1746338002/comfyui-adae925e-5b5d-491d-bf48-fd6d081245ad-e1.mp3"
-      ]
-    },
-    {
       "id": 63,
       "type": "MediaUtilities_SaveVideo",
       "pos": [
-        1713.5621337890625,
-        50.66826629638672
+        1963.763916015625,
+        130
       ],
       "size": [
-        315,
+        270,
         246
       ],
       "flags": {},
-      "order": 9,
+      "order": 8,
       "mode": 0,
       "inputs": [
         {
           "name": "frames",
           "type": "IMAGE",
-          "link": 85
+          "link": 25
         },
         {
           "name": "audio",
           "shape": 7,
           "type": "AUDIO",
-          "link": 84
+          "link": 26
         }
       ],
       "outputs": [],
       "properties": {
         "cnr_id": "mediaurlloader",
-        "ver": "d6844d85212c388106eb57f4eb22c3723cf0697c",
+        "ver": "fec44ba12755112288540db111061594ebcbbae5",
         "Node name for S&R": "MediaUtilities_SaveVideo",
         "widget_ue_connectable": {}
       },
@@ -396,169 +186,249 @@
       ]
     },
     {
-      "id": 54,
-      "type": "easy cleanGpuUsed",
+      "id": 61,
+      "type": "MediaUtilities_AudioURLLoader",
       "pos": [
-        1172.938232421875,
-        336
+        100,
+        570
       ],
       "size": [
-        170.97898864746094,
-        26
+        298.3404235839844,
+        58
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "AUDIO",
+          "type": "AUDIO",
+          "links": [
+            19,
+            24,
+            26
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "mediaurlloader",
+        "ver": "fec44ba12755112288540db111061594ebcbbae5",
+        "Node name for S&R": "MediaUtilities_AudioURLLoader",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "https://res.cloudinary.com/prisma-forge/video/upload/v1746338002/comfyui-adae925e-5b5d-491d-bf48-fd6d081245ad-e1.mp3"
+      ]
+    },
+    {
+      "id": 51,
+      "type": "SONIC_PreData",
+      "pos": [
+        966.3746337890625,
+        130
+      ],
+      "size": [
+        270,
+        186
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip_vision",
+          "type": "CLIP_VISION",
+          "link": 17
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 18
+        },
+        {
+          "name": "audio",
+          "type": "AUDIO",
+          "link": 19
+        },
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 20
+        },
+        {
+          "name": "weight_dtype",
+          "type": "DTYPE",
+          "link": 21
+        },
+        {
+          "name": "duration",
+          "type": "FLOAT",
+          "widget": {
+            "name": "duration"
+          },
+          "link": 16
+        }
+      ],
+      "outputs": [
+        {
+          "name": "data_dict",
+          "type": "SONIC_PREDATA",
+          "links": [
+            29
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "ComfyUI_Sonic",
+        "ver": "6595df02e72406fe23baebc12ac2088832d7ff9b",
+        "Node name for S&R": "SONIC_PreData",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        576,
+        10,
+        1
+      ]
+    },
+    {
+      "id": 46,
+      "type": "Image Resize",
+      "pos": [
+        488.8898620605469,
+        397.53802490234375
+      ],
+      "size": [
+        270,
+        178
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 15
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            20
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "was-node-suite-comfyui",
+        "ver": "1cd8d304eda256c412b8589ce1f00be3c61cf9ec",
+        "Node name for S&R": "Image Resize",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "rescale",
+        "true",
+        "lanczos",
+        1.0000000000000002,
+        576,
+        1024
+      ]
+    },
+    {
+      "id": 56,
+      "type": "LoadImageByUrl //Browser",
+      "pos": [
+        100,
+        358
+      ],
+      "size": [
+        270,
+        82
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            15
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-browser",
+        "ver": "95fd55d663f4ebbc54949af5dfd1b0650153fc52",
+        "Node name for S&R": "LoadImageByUrl //Browser",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "https://res.cloudinary.com/prisma-forge/image/upload/v1746689809/vveiy5etxb4ateqkr18x.png",
+        true
+      ]
+    },
+    {
+      "id": 64,
+      "type": "SONICSampler",
+      "pos": [
+        1482.7659912109375,
+        123.78870391845703
+      ],
+      "size": [
+        270,
+        174
       ],
       "flags": {},
       "order": 7,
       "mode": 0,
       "inputs": [
         {
-          "label": "anything",
-          "name": "anything",
-          "type": "*",
-          "link": 69
-        }
-      ],
-      "outputs": [
-        {
-          "label": "output",
-          "name": "output",
-          "type": "*",
-          "slot_index": 0,
-          "links": [
-            70
-          ]
-        }
-      ],
-      "properties": {
-        "cnr_id": "comfyui-easy-use",
-        "ver": "66143b0e2077021253246500043f1b79da295399",
-        "Node name for S&R": "easy cleanGpuUsed",
-        "widget_ue_connectable": {}
-      },
-      "widgets_values": []
-    },
-    {
-      "id": 31,
-      "type": "SONICSampler",
-      "pos": [
-        1400,
-        230
-      ],
-      "size": [
-        266.05596923828125,
-        174
-      ],
-      "flags": {},
-      "order": 8,
-      "mode": 0,
-      "inputs": [
-        {
-          "label": "model",
           "name": "model",
           "type": "MODEL_SONIC",
-          "link": 68
+          "link": 27
         },
         {
-          "label": "data_dict",
           "name": "data_dict",
           "type": "SONIC_PREDATA",
-          "link": 70
+          "link": 29
         }
       ],
       "outputs": [
         {
-          "label": "image",
           "name": "image",
           "type": "IMAGE",
-          "slot_index": 0,
           "links": [
-            85
+            25
           ]
         },
         {
-          "label": "fps",
           "name": "fps",
           "type": "FLOAT",
-          "slot_index": 1,
-          "links": []
+          "links": null
         }
       ],
       "properties": {
         "cnr_id": "ComfyUI_Sonic",
         "ver": "6595df02e72406fe23baebc12ac2088832d7ff9b",
         "Node name for S&R": "SONICSampler",
-        "aux_id": "smthemex/ComfyUI_Sonic",
         "widget_ue_connectable": {}
       },
       "widgets_values": [
-        231464893,
-        "fixed",
+        210266407,
+        "randomize",
         1,
         1,
         25
-      ],
-      "color": "#432",
-      "bgcolor": "#653"
+      ]
     }
   ],
   "links": [
     [
-      62,
-      32,
-      1,
-      51,
-      0,
-      "CLIP_VISION"
-    ],
-    [
-      63,
-      32,
-      2,
-      51,
-      1,
-      "VAE"
-    ],
-    [
-      65,
-      46,
-      0,
-      51,
-      3,
-      "IMAGE"
-    ],
-    [
-      67,
-      32,
-      0,
-      53,
-      0,
-      "MODEL"
-    ],
-    [
-      68,
-      53,
-      0,
-      31,
-      0,
-      "MODEL_SONIC"
-    ],
-    [
-      69,
-      51,
-      0,
-      54,
-      0,
-      "*"
-    ],
-    [
-      70,
-      54,
-      0,
-      31,
-      1,
-      "SONIC_PREDATA"
-    ],
-    [
-      72,
+      15,
       56,
       0,
       46,
@@ -566,23 +436,7 @@
       "IMAGE"
     ],
     [
-      74,
-      53,
-      1,
-      51,
-      4,
-      "DTYPE"
-    ],
-    [
-      80,
-      61,
-      0,
-      51,
-      2,
-      "AUDIO"
-    ],
-    [
-      82,
+      16,
       62,
       0,
       51,
@@ -590,7 +444,55 @@
       "FLOAT"
     ],
     [
-      83,
+      17,
+      32,
+      1,
+      51,
+      0,
+      "CLIP_VISION"
+    ],
+    [
+      18,
+      32,
+      2,
+      51,
+      1,
+      "VAE"
+    ],
+    [
+      19,
+      61,
+      0,
+      51,
+      2,
+      "AUDIO"
+    ],
+    [
+      20,
+      46,
+      0,
+      51,
+      3,
+      "IMAGE"
+    ],
+    [
+      21,
+      53,
+      1,
+      51,
+      4,
+      "DTYPE"
+    ],
+    [
+      22,
+      32,
+      0,
+      53,
+      0,
+      "MODEL"
+    ],
+    [
+      24,
       61,
       0,
       62,
@@ -598,7 +500,15 @@
       "AUDIO"
     ],
     [
-      84,
+      25,
+      64,
+      0,
+      63,
+      0,
+      "IMAGE"
+    ],
+    [
+      26,
       61,
       0,
       63,
@@ -606,44 +516,32 @@
       "AUDIO"
     ],
     [
-      85,
-      31,
+      27,
+      53,
       0,
-      63,
+      64,
       0,
-      "IMAGE"
+      "MODEL_SONIC"
+    ],
+    [
+      29,
+      51,
+      0,
+      64,
+      1,
+      "SONIC_PREDATA"
     ]
   ],
   "groups": [],
   "config": {},
   "extra": {
-    "VHS_KeepIntermediate": true,
     "ue_links": [],
-    "VHS_MetadataImage": true,
-    "0246.VERSION": [
-      0,
-      0,
-      4
-    ],
-    "VHS_latentpreviewrate": 0,
-    "VHS_latentpreview": false,
-    "node_versions": {
-      "ComfyUI_Mira": "79494e6ecb8e1b8159d6bbb100c8a20f07ad6302",
-      "ComfyUI-VideoHelperSuite": "8629188458dc6cb832f871ece3bd273507e8a766",
-      "ComfyUI-KJNodes": "86b5453a5ca9ecb883eedc9d0a96bf942b9ca73e",
-      "comfy-core": "0.3.14",
-      "ComfyUI-Custom-Scripts": "a53ef9b617ed1331640d7a2cd97644995908dc00",
-      "ComfyUI_Sonic": "f176fa4d97497b2b12834c423847de4cc8a0c05a"
-    },
-    "ds": {
-      "scale": 1,
-      "offset": [
-        -746.612335382541,
-        -61.263912028992905
-      ]
-    },
     "links_added_by_ue": [],
-    "frontendVersion": "1.18.6"
+    "frontendVersion": "1.18.6",
+    "VHS_latentpreview": false,
+    "VHS_latentpreviewrate": 0,
+    "VHS_MetadataImage": true,
+    "VHS_KeepIntermediate": true
   },
   "version": 0.4
 }

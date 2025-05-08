@@ -8,24 +8,6 @@
       "title": "Image Only Checkpoint Loader (img2vid model)"
     }
   },
-  "46": {
-    "inputs": {
-      "mode": "resize",
-      "supersample": "true",
-      "resampling": "nearest",
-      "rescale_factor": 1.0000000000000002,
-      "resize_width": 576,
-      "resize_height": 1024,
-      "image": [
-        "56",
-        0
-      ]
-    },
-    "class_type": "Image Resize",
-    "_meta": {
-      "title": "Image Resize"
-    }
-  },
   "51": {
     "inputs": {
       "min_resolution": 576,
@@ -47,7 +29,7 @@
         0
       ],
       "image": [
-        "46",
+        "56",
         0
       ],
       "weight_dtype": [
@@ -76,21 +58,9 @@
       "title": "SONICTLoader"
     }
   },
-  "54": {
-    "inputs": {
-      "anything": [
-        "51",
-        0
-      ]
-    },
-    "class_type": "easy cleanGpuUsed",
-    "_meta": {
-      "title": "Clean VRAM Used"
-    }
-  },
   "56": {
     "inputs": {
-      "url": " https://res.cloudinary.com/prisma-forge/image/upload/v1745308700/current_enebuf.jpg",
+      "url": "https://res.cloudinary.com/prisma-forge/image/upload/v1746689809/vveiy5etxb4ateqkr18x.png",
       "cache": true
     },
     "class_type": "LoadImageByUrl //Browser",
@@ -145,7 +115,7 @@
   },
   "64": {
     "inputs": {
-      "seed": 231464893,
+      "seed": 210266407,
       "inference_steps": 1,
       "dynamic_scale": 1,
       "fps": 25,
@@ -154,7 +124,7 @@
         0
       ],
       "data_dict": [
-        "54",
+        "51",
         0
       ]
     },
